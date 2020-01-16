@@ -643,13 +643,13 @@ function reply_click(obj){
             // 楼层原回复fid 与 input data-fid 不一致 
             alert("error 当前无法写入数据 ")
         }else{
-            $("#comment_root_id").val( $(obj).attr("data-commentid") ) 
+            $("#comment_root_id").val( $(obj).attr("data-commentid") ) ;
         }
-
-
     }
+    
     if ($(obj).attr("id") == "cancel-comment-reply-link" ){ 
         $("#reply-title").text("发表评论");
+        $("#comment_root_id").val( 0 ); 
     }
 }
 

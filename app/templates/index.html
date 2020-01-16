@@ -1,17 +1,27 @@
 {% extends "base/hexo_index.html" %}
 
+{% block copyright %}
+    {{copyright|safe}}
+{% endblock %}
+
+{% block index_image %}
+<div class="layer" data-depth="0.4">
+    <img src="{{ index_imageurl }}" id="cover" crossorigin="anonymous" width="1920" height="1080">    
+</div>
+{% endblock %}
+
 {% block page0 %}
     <!-- <p>date</p> -->
     {%if welcome %}
     <div id="post0"> 
-        <h2><a href="" title="{{ welcome.title }}" class="posttitle">{{ welcome.title }}</a></h2>
+        <h2><a href="{{welcome.href}}" title="{{ welcome.title }}" class="posttitle">{{ welcome.title }}</a></h2>
         <p class="summary">
             {{ welcome.abstract }}
         </p>
     </div>
     {% else %}
     <div id="post0">
-        <h2><a href="" title="Welcome" class="posttitle">Welcome1</a></h2>
+        <h2><a href="{{ url_for('article.archive', filename = 'welcome') }}" title="Welcome" class="posttitle">Welcome1</a></h2>
         <p class="summary">
             再次感谢原作者创作出这么精美的主题 @Fechin @LoeiFy
         </p>

@@ -98,9 +98,7 @@ def main():
     #     print(i)
 
 if __name__ == "__main__":
-    print("hello world")
+    db.Create_table()
     now_archives = get_archives()
-    print(archive_path)
-    print(now_archives)
     main()
     # print(get_archives())

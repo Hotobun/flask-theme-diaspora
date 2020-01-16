@@ -13,6 +13,8 @@ def home():
     d = { 
     'welcome' : db.query_filename("welcome"),
     'more' : url_for('jsonapi.get_json', args = "{}{}{}".format('index',config.jsonurl_split,1)) ,
-    'gov'     : config.gov
+    'gov'     : config.gov, 
+    'index_imageurl' :  config.index_image,
+    'copyright' : config.copyright,
     }
     return render_template("index.html", **d ) 

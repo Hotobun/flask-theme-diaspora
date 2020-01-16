@@ -168,7 +168,10 @@ def insert_comment(item):
         new.fid = item['fid']
         if item.get('date', False):
             new.date = item['date']
-        new.author = item['author']
+        if not item['author']:
+            new.author = config.default_user_name
+        else:
+            new.author = item['author']
         new.vcardurl = item.get('vcardurl', '/img/number/{}.jpg'.format(random.randint(1,8)))
         new.comment = item['comment']
         new.site = item['site']

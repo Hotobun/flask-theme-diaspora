@@ -88,7 +88,7 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
 <div class="comment-wrap">
     <div id="comments" class="comments-area">
 
-        <h2>评论列表</h2>
+        <h2 style="display: none;">评论列表</h2>
     <ol class="comment-list">
         {% for commitem in comments %}
         <li class="comment even thread-odd thread-alt depth-1 parent" id="comment-{{ commitem.id }}">
@@ -158,7 +158,7 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
 
 		<p class="comment-notes"><span id="email-notes">电子邮件地址不会被公开。</span> 必填项已用<span class="required">*</span>标注</p>
 
-		<p class="comment-form-comment"><label for="comment">评论</label> <textarea id="comment" name="comment" cols="45" rows="8"
+		<p class="comment-form-comment"><label for="comment" style="display: none;">评论</label> <textarea id="comment" name="comment" cols="45" rows="8"
 			 maxlength="65525" required="required"></textarea></p>
 
 		<p class="comment-form-author"><label for="author">姓名 <span class="required"></span></label>

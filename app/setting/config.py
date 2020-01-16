@@ -14,6 +14,9 @@ DB_URI = "mysql+pymysql://{username}:{password}@{host}:{port}/{db}?charset=utf8"
 # 数据库文章字符数上限 
 db_text_count = 100000
 
+# 评论未填写用户名的默认名称
+default_user_name = "未署名的热心网友"
+
 # 文章默认图片 img目录不要有前斜杠
 define_coverimg = 'img/cover.jpg'
 
@@ -40,8 +43,22 @@ keywords = "flask, cocoa, 壁纸, 素锦,  音乐"
 author = 'Hoto cocoa'
 
 # nav_p 
-# 例 '© 2020 素锦. Powered by WordPress. '
+# 例 '© 2020 素锦. Powered by WordPress. ' # 好像还没用 
 nav_p = '© 2020 Hotobun. Powered by Flask. '
+
+
+# copyright
+copyright = '''
+    <p id="copyright">
+        &copy; 2020 Hotobun.
+        Powered by <a href="https://dormousehole.readthedocs.io/en/latest/" title="Flask" target="_blank" rel="noopener">Flask</a>
+        Theme <a href="https://github.com/LoeiFy/Diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a>
+        by <a href="https://github.com/LoeiFy" title="LoeiFy" target="_blank" rel="noopener">LoeiFy</a>
+        and <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Fechin" target="_blank" rel="noopener">Fechin.</a> 
+    </p>
+'''
+
+
 
 
 # gov 备案号
@@ -58,6 +75,8 @@ music = 'gabriel.mp3'
 # 图床首页 使用时 image_site + img/filename.jpg 大概
 # 不使用图床的话 要用 url_for("static", filename='img/filename.jpg') 
 image_site = "http://hotobun.gitee.io/hexo/"
+
+index_image = 'img/index.png'
 
 if __name__ == "__main__":
     print(archive_path)

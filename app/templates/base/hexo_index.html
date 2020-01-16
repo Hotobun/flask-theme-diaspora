@@ -37,15 +37,15 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
     <div class="nav">
     <ul id="menu-menu" class="menu">
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+        <!-- <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
             <a href="/whoami/" title="whoami" target="_blank" rel="noopener">whoami</a>
-        </li>
+        </li> -->
         
         <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
             <a href="/" title="主页" target="_blank" rel="noopener">主页</a>
         </li>
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+        <!-- <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
             <a href="/tags/" title="标签" target="_blank" rel="noopener">标签</a>
         </li>
         
@@ -59,24 +59,25 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
         
         <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
             <a href="/valine/" title="留言板" target="_blank" rel="noopener">留言板</a>
-        </li>
+        </li> -->
         
     </ul>
-    <p id="copyright">
+    {% block copyright %}
+    <!-- <p id="copyright">
         &copy; 2020 Hoto cocoa.
-        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        Theme <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a>
-        by Fechin
-    </p>
+        Powered by <a href="http://hexo.io/" title="Flask" target="_blank" rel="noopener">Flask</a>
+        Theme <a href="https://github.com/LoeiFy/Diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a>
+        by LoeiFy and <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Fechin" target="_blank" rel="noopener">Fechin</a> 
+    </p> -->
+    {% endblock %}
 </div>
 
 <div id="container">
     
 <div id="screen">
     <div id="mark">
-        <div class="layer" data-depth="0.4">
-            <img src="/img/index.png" id="cover" crossorigin="anonymous" width="1920" height="1080">
-        </div>
+        {% block index_image %} 
+        {% endblock %}
     </div>
     <div id="vibrant">
         <svg viewBox="0 0 2880 1620" height="100%" preserveAspectRatio="xMaxYMax slice">
