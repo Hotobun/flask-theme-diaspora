@@ -9,7 +9,7 @@
 * `app/static/img/site/logo_min.png` 浏览器最上方标题旁边的图标 
 
 *** 
-数据库 
+使用   
 * 进入mysql创建数据库 
   * `CREATE DATABASE flaskcocoa DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;`
 * `python app/database/archive.py` 创建数据库并写入文章数据
