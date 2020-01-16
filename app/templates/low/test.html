@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>投资问题 - 馒++</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    
+    <meta name="keywords" content="cocoa,"> 
+    <meta name="description" content="条件你有五万元 可以分别给不同的项目投资若干金额下表列举了投资效益x为投入资金 f(x)为项目效益   
+
+ 
+,">
+    <script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+    <meta name="author" content="Hoto cocoa"> 
+    <link rel="alternative" href="atom.xml" title="馒++" type="application/atom+xml"> 
+    <link rel="icon" href="/img/logo.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://hotococoa.com/js/diaspora.js"></script>
+    <script src="https://hotococoa.com/css/diaspora.css"></script>
+    
+    
+    <!--
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="/js/amp-auto-ads-0.1.js">
+    </script>
+  -->
+
+    <!--动态标题
+<script>document.addEventListener('visibilitychange',function(){if(document.visibilityState=='hidden'){normal_title=document.title;document.title='人呢？快回来！';}else{document.title=normal_title;}});</script>
+-->
+
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">馒++</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="https://www.hotococoa.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">投资问题</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;" target="_blank" rel="noopener"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">投资问题</h1>
+        <div class="stuff">
+            <span>一月 10, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h4><p>你有五万元 可以分别给不同的项目投资若干金额<br>下表列举了投资效益<br>x为投入资金 f(x)为项目效益   </p>
+<table>
+<thead>
+<tr>
+<th align="center">x</th>
+<th align="center">f1(x)</th>
+<th align="center">f2(x)</th>
+<th align="center">f3(x)</th>
+<th align="center">f4(x)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">11</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">20</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">12</td>
+<td align="center">5</td>
+<td align="center">10</td>
+<td align="center">21</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">13</td>
+<td align="center">10</td>
+<td align="center">30</td>
+<td align="center">22</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">14</td>
+<td align="center">15</td>
+<td align="center">32</td>
+<td align="center">23</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">15</td>
+<td align="center">20</td>
+<td align="center">40</td>
+<td align="center">24</td>
+</tr>
+</tbody></table>
+<h4 id="问"><a href="#问" class="headerlink" title="问"></a>问</h4><p>如何使效益最大化。</p>
+<h4 id="解"><a href="#解" class="headerlink" title="解"></a>解</h4><ul>
+<li>当 k = 1时 只考虑把钱投资给第一个项目：<br>f1(1) = 11, f1(2) = 12, f1(3) = 13, f1(4) = 14, f1(5) = 15<br>直接把项目1回报抄下来 对应 12345 这 5万元分别的回报 不需要计算<br>上述最优回报为 15<br>结论: 5万元投资项目1 最优效益15万  </li>
+<li>当 k = 2 时 可以考虑项目1和项目2 <ul>
+<li>方案1 一万元的分配: <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">有两个选择 (0,1) (1,0)  </span></pre></td></tr><tr><td class="code"><pre><span class="line">f2(1) &#x3D; max&#123; f2(1), f1(1) &#125;  </span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#x3D; max&#123; 0 , 11 &#125;  </span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#x3D; 11  </span></pre></td></tr><tr><td class="code"><pre><span class="line">1万投资给f1(1) 效益11万</span></pre></td></tr></table></figure></li>
+<li>方案2 两万元的分配: <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">有3个选择 (0, 2) (1, 1) (2, 0)</span></pre></td></tr><tr><td class="code"><pre><span class="line">f2(2) &#x3D; max&#123; f2(2), f1(1)+f2(1), f1(2) &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#x3D; max&#123; 5, 11+0, 12 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#x3D; 12</span></pre></td></tr><tr><td class="code"><pre><span class="line">2万投资给f1(2) 效益12万</span></pre></td></tr></table></figure></li>
+<li>方案3 三万元的分配:<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">有4种可能的划分 (0, 3) (1, 2) (2, 1) (3, 0)</span></pre></td></tr><tr><td class="code"><pre><span class="line">f2(3) &#x3D; max&#123; f2(3), f1(1)+f2(2), f1(2)+f2(1), f1(3) &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#x3D; max&#123; 10, 11+5, 12+0, 13 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#x3D; max&#123; 10, 16, 12, 13&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#x3D; 16</span></pre></td></tr><tr><td class="code"><pre><span class="line">此时最优为 1万投资项目1、2万投资项目2 效益16万</span></pre></td></tr></table></figure></li>
+<li>按上述方法 可以计算f2(4) f2(5)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">f2(4) &#x3D; 21</span></pre></td></tr><tr><td class="code"><pre><span class="line">f2(5) &#x3D; 26</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>我们可以将所有分配计算出来 记到表格中<br>f3(5) x3(5) 表示前3个项目 分配5万元的情况  </p>
+<table>
+<thead>
+<tr>
+<th align="center">x</th>
+<th align="center">f1(x) x1(x)</th>
+<th align="center">f2(x) x2(x)</th>
+<th align="center">f3(x) x3(x)</th>
+<th align="center">f4(x) x4(x)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">11&ensp;&ensp; 1</td>
+<td align="center">11&ensp;&ensp; 0</td>
+<td align="center">11&ensp;&ensp; 0</td>
+<td align="center">20&ensp;&ensp; 1</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">12&ensp;&ensp; 2</td>
+<td align="center">12&ensp;&ensp; 0</td>
+<td align="center">13&ensp;&ensp; 1</td>
+<td align="center">31&ensp;&ensp; 1</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">13&ensp;&ensp; 3</td>
+<td align="center">16&ensp;&ensp; 2</td>
+<td align="center">30&ensp;&ensp; 3</td>
+<td align="center">33&ensp;&ensp; 1</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">14&ensp;&ensp; 4</td>
+<td align="center">21&ensp;&ensp; 3</td>
+<td align="center">41&ensp;&ensp; 3</td>
+<td align="center">50&ensp;&ensp; 1</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">15&ensp;&ensp; 5</td>
+<td align="center">26&ensp;&ensp; 4</td>
+<td align="center">43&ensp;&ensp; 4</td>
+<td align="center">61&ensp;&ensp; 1</td>
+</tr>
+</tbody></table>
+<p>解读表格的最后一项<br>5万元投资4个项目 最优效益为 61万</p>
+<ul>
+<li>在项目4投资了1万元 剩下4万就分配给前三个项目</li>
+<li>然后追踪到 x3(4) –&gt; ( 41 3 )</li>
+<li>在项目3投资了3万元 剩下一万分配给前两个项目</li>
+<li>然后可以追踪到 x2(1) –&gt; ( 11 0 )</li>
+<li>在项目2 没有投资 剩一万</li>
+<li>一万最大效益 x1(1) –&gt; ( 11 1 )</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  x4(5)&#x3D;1 --&gt; x4&#x3D;1 , x3(5-1) &#x3D; x3(4)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  x3(4)&#x3D;3 --&gt; x3&#x3D;3 , x2(4-3) &#x3D; x2(1)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  x2(1)&#x3D;0 --&gt; x2&#x3D;0 , x1(1-0) &#x3D; x1(1)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  x1(1)&#x3D;1 --&gt; x1&#x3D;1</span></pre></td></tr><tr><td class="code"><pre><span class="line"> </span></pre></td></tr><tr><td class="code"><pre><span class="line">解：x1&#x3D;1, x2&#x3D;0, x3&#x3D;3, x4&#x3D;1 , f4(5) &#x3D; 61</span></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                         
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div>
+ 
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<!-- <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script> -->
+
+<!-- <script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script> -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

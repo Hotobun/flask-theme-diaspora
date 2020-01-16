@@ -1,0 +1,134 @@
+{% extends "sujin_index_base.html" %}
+
+
+{% block head %}
+<title>{{ sitename }} </title>
+<meta name="keywords" content="{{ keywords }}">
+<meta name="description" content="{{ description }}">
+<meta name="author" content="{{ author }}">
+
+<!-- <script src="https://isujin.com/wp-content/themes/Diaspora/static/jquery.min.js"></script>
+    
+<script src="https://isujin.com/wp-content/themes/Diaspora/assets/Diaspora.js"></script>
+    
+<link rel="stylesheet"  href="https://isujin.com/wp-content/themes/Diaspora/assets/Diaspora.css">
+   
+<script  src="https://isujin.com/wp-content/themes/Diaspora/static/plugin.js"></script> -->
+
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/diaspora.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diaspora.css') }}">
+<script  src="{{ url_for('static', filename='js/plugin.js') }}"></script>
+   
+
+{% endblock %}
+
+
+
+{% block nav %}
+<div class="nav">
+    {% for item in menu %}
+    <li
+        class="pview menu-item menu-item-type-post_type menu-item-object-page">
+        <a href="{{ item[1] }}" title="{{ item[0] }}"
+            target="_blank" rel="noopener">{{ item[0] }}</a>
+    </li>
+    {% endfor %}
+    <!-- <li id="menu-item-3507" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3507"><a target="_blank" rel="noopener noreferrer" href="http://isujin.com/rain/">Rainy</a></li> -->
+    <li id="menu-item-3682"
+        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3682">
+        <a target="_blank" rel="noopener noreferrer"
+            href="http://isujin.com/japonism/">Japonism</a>
+    </li>
+    </ul>
+    <p>{{ nav_p }}</p>
+</div>
+{% endblock %}
+
+
+
+{% block mark %}
+<div id="mark">
+    <div class="layer" data-depth="0.4">
+        <img src="{{ url_for('static', filename='img/index.png') }}"
+            id="cover" crossorigin="anonymous" width="1920"
+            height="1080">
+    </div>
+</div>
+{% endblock %}
+
+
+{% block page0 %}
+<!-- <p>date</p> -->
+{%if welcome %}
+<div id="post0">
+    <p>{{ welcome.date }}</p>
+    <h2><a href="{{ welcome.href }}" title="{{ welcome.title }}"
+            class="posttitle">{{ welcome.title }}</a></h2>
+    <p class="summary">
+        {{ welcome.text }}
+    </p>
+</div>
+{% else %}
+<div id="post0">
+    <h2><a href="" title="Welcome"
+            class="posttitle">Welcome1</a></h2>
+    <p class="summary">
+        再次感谢原作者创作出这么精美的主题 @Fechin @LoeiFy
+    </p>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block archives %}
+    {% for item in archives %}
+    <div class="post">
+        <a href="{{ item.href }}" title="{{item.title}}">
+            <img src="{{ item.imgurl }}" class="cover"
+                width="680" height="440">
+        </a>
+
+        <div class="else">
+            <p>{{ item.date }}</p>
+            <h3><a href="{{ item.href }}"
+                    title="{{ item.title }}"
+                    class="posttitle">{{item.title}}</a></h3>
+            <p>{{ item.text }}</p>
+            {% if p_here %}
+            <p class="here">
+                <span class="icon-letter">p_here.letter</span>
+                <span class="icon-view">p_here.view</span>
+                <a href="javascript:;" class="likeThis active" id="like-6537"><span class="icon-like"></span><span class="count">p_here.like</span></a>        
+            </p>
+            {% endif %}
+        </div> 
+    </div>
+    {% endfor %}
+{% endblock %}    
+
+{% block idnex_more %}
+    {% if more %}
+    <div id="pager"><a href="{{ more }}" class="more"
+            id="moreurl" οnclick="new_json()">加载更多</a></div>
+    {% endif%}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

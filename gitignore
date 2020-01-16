@@ -1,0 +1,3 @@
+temp     // 忽略这个目录
+.vscode 
+*__pycache__

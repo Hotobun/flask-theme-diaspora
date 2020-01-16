@@ -1,0 +1,239 @@
+<hr />
+<p>title: 芯片问题
+date: 2019-12-11 11:12:58
+tags:</p>
+<ul>
+<li>算法</li>
+<li>python
+categories: 算法
+cover: /img/chip_problem.png</li>
+</ul>
+<hr />
+<p>测试台可以放两块芯片 互相进行测试
+测试报告只有 &quot;好&quot; or &quot;坏&quot;</p>
+<ul>
+<li>好芯片的报告一定是正确的</li>
+<li>坏芯片的报告是不确定的</li>
+</ul>
+<h4>问题：</h4>
+<p>n片芯片，其中好芯片至少比坏芯片多1片。<br />
+设计一种测试方法，通过测试从n片芯片中挑出一片好芯片</p>
+<hr />
+<p>测试报告分析:</p>
+<table>
+<thead>
+<tr>
+<th align="center">A报告</th>
+<th align="center">B报告</th>
+<th align="center">结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">B是好的</td>
+<td align="center">A是好的</td>
+<td align="center">A,B都好，或都坏</td>
+</tr>
+<tr>
+<td align="center">B是好的</td>
+<td align="center">A是坏的</td>
+<td align="center">至少一片是坏的</td>
+</tr>
+<tr>
+<td align="center">B是坏的</td>
+<td align="center">A是好的</td>
+<td align="center">至少一片是坏的</td>
+</tr>
+<tr>
+<td align="center">B是坏的</td>
+<td align="center">A是坏的</td>
+<td align="center">至少一片是坏的</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>问题： 给定芯片A，判定A的好坏<br />
+方法： 用其他n-1片芯片对A测试。
+根据题意得知 好芯片比坏芯片至少多1</p>
+<h4>假设1： n是奇数</h4>
+<p>n=7: 好芯片数 &gt;= 4</p>
+<ul>
+<li>A好，6个报告中至少有3个报告 &quot;好&quot;</li>
+<li>A坏，6个报告中至少有4个报告 &quot;坏&quot;</li>
+</ul>
+<p>当n为奇数时：</p>
+<ul>
+<li>好芯片数 &gt;= (n+1)/2</li>
+<li>A好，至少有(n-1)/2个报告 &quot;好&quot;</li>
+<li>A坏，至少有(n+1)/2个报告 &quot;坏&quot;</li>
+</ul>
+<p>结论：</p>
+<ul>
+<li>至少一半报 &quot;好&quot;， A是好芯片</li>
+<li>超过一半报 &quot;坏&quot;， A是坏芯片</li>
+</ul>
+<h4>假设2: n是偶数</h4>
+<p>n=8: 好芯片数 &gt;= 5</p>
+<ul>
+<li>A好，7个报告中至少有4个报告 &quot;好&quot;</li>
+<li>A坏，7个报告中至少有5个报告 &quot;坏&quot;</li>
+</ul>
+<p>当n为奇数时：</p>
+<ul>
+<li>好芯片数 &gt;= n/2+1</li>
+<li>A好，至少有 n/2 个报告 &quot;好&quot;</li>
+<li>A坏，至少有 n/2+1 个报告 &quot;坏&quot;</li>
+</ul>
+<p>结论：</p>
+<ul>
+<li>至少一半报 &quot;好&quot;， A是好芯片</li>
+<li>超过一半报 &quot;坏&quot;， A是坏芯片</li>
+</ul>
+<hr />
+<h2>蛮力算法</h2>
+<h4>测试方法:</h4>
+<p>任取1片芯片测试，如果是好芯片，测试结束；如果是坏芯片，抛弃，再从剩下芯片任取1片测试，直到得到好芯片。</p>
+<h4>时间估计 O(n²)</h4>
+<hr />
+<h2>分治算法</h2>
+<p>假设n为偶数，将n片芯片两两一组做测试淘汰，剩下芯片构成子问题，进入下一轮分组淘汰。</p>
+<h4>淘汰规则</h4>
+<ul>
+<li>&quot;好，好&quot; -&gt; 任意留一片,进入下轮</li>
+<li>其他情况 -&gt; 全部抛弃</li>
+</ul>
+<h4>截止条件 n &lt;= 3</h4>
+<p>3片芯片，1次测试可得知好芯片。
+1或2片芯片，不需测试 都是都是好芯片
+仅存3片芯片时，至少有2片是好的 任意取两片测试</p>
+<ul>
+<li>两个都报告好，那就是真的都是好芯片</li>
+<li>有一个报告坏，说明坏芯片在测试台上，没有上台的那片直接输出答案</li>
+</ul>
+<h4>分治算法正确性</h4>
+<p>命题1：当n是偶数时，在上述淘汰规则下，经过一轮淘汰，剩下好芯片毕坏芯片至少多1片。
+证：设
+A,B都是好芯片i组
+A与B一好一坏j组<br />
+A与B都坏的k组<br />
+淘汰后好芯片至少i片坏芯片之多k片</p>
+<ul>
+<li>2i + 2j + 2k = n  # 初始芯片总数</li>
+<li>2i + j &gt; 2k +j  # 左侧是原来好芯片数，右侧原来坏芯片数</li>
+<li>i &gt; k #</li>
+</ul>
+<p>淘汰以后 好芯片依旧比坏芯片多</p>
+<p>命题2：当n为奇数时 可能会出问题
+输入：&quot;好 好 好 好 坏 坏 坏&quot;
+分组: [&quot;好&quot; &quot;好&quot;] [&quot;好&quot; &quot;好&quot;] [&quot;坏&quot; &quot;坏&quot;] &quot;坏&quot;
+淘汰后: &quot;好&quot; &quot;好&quot; &quot;坏&quot; &quot;坏&quot;
+处理方法： 当n为奇数时 增加一轮对轮空的芯片单独测试，
+如果是好芯片，算法结束；
+如果是坏芯片，淘汰坏芯片，保持好芯片比坏芯片至少多一片条件</p>
+<h4>算法复杂度 O(n)</h4>
+<details>
+  <summary> python代码 </summary>
+<pre><code class="language-python">import random
+ 
+# 是否使用测试用例
+debug_example = False
+# type example: [[int, bool], [int, bool] ... ]
+example =  [ [0, False], [1, True], [2, False], [3, False], [4, True], [5, True] ]
+ 
+# 随机创建实例个数范围
+rand_min = 50
+rand_max = 100
+ 
+class chip():
+    def __init__(self, number,quality):
+        self.number = number
+        self.quality = quality
+    
+    def test_target(self, target):
+        # type target : chip
+        # rtype ： bool
+        # 接收一个芯片实例形参 判断该芯片好坏 返回bool
+        # 如果本实例是好芯片 不会说谎 直接报告目标芯片的quality
+        # 如果本实例不是好芯片 报告就有不确定性 返回一个随机值
+        if self.quality:
+            return target.quality
+        else:
+            return random.choice((True,False))
+ 
+def create_chips():
+    # rtype : list[chip,chip,...]
+    # 随机创建实例 随机好坏
+    # 最后补正好芯片比坏芯片多条件
+    # 随机选取1或2个坏芯片改成好的 使得好芯片比坏芯片多
+    chips = []
+    quality_count = 0
+    badnums = []
+    for x in range(random.randint(rand_min,rand_max)):
+        if random.choice((True,False)):
+            chips.append(chip(number = x, quality = True))
+            quality_count += 1
+        else:
+            chips.append(chip(number = x, quality = False))
+            badnums.append(x)
+    while quality_count &lt;= len(chips)/2:
+        for _ in range(random.choice((1,2))):
+            num = badnums.pop(random.randint(0,len(badnums)-1))
+            chips[num].quality = True
+            quality_count += 1
+    return chips
+ 
+def test(A,B):
+    # type A: chip
+    # type B: chip
+    # rtype : bool
+    return A.test_target(B) and B.test_target(A)
+ 
+def create_test_chips():
+    # rtype : list[chip, chip...]
+    chips = []
+    for i in example:
+        chips.append(chip(number = i[0], quality = i[1]))
+    return chips    
+ 
+def main():
+    # rtype : chip
+    if debug_example:
+        chips = create_test_chips()
+    else:
+        chips = create_chips()
+    while len(chips) &gt; 3:
+        # 当总量为奇数时 对最后一个元素单独判断 
+        # 循环遍历前面的元素 与最后一个元素测试 得到最后一片芯片的quality 
+        if len(chips)%2 != 0:    
+            count = 0
+            for i in chips[:-1]:
+                if i.test_target(chips[-1]):
+                    count += 1
+            if count &gt;= len(chips)//2: # 此时已经发现最后一片是好芯片
+                return chips[-1]
+            else:
+                chips.pop()
+        else:   # 如果不是奇数 进入分组淘汰模式
+            surplus = []
+            for i in range(len(chips)//2):
+                # 两两一组互相测试 都报告好芯片 就随机选一个进入下一轮
+                if test( chips[i*2], chips[i*2+1] ):
+                    surplus.append( chips[ i*2 + random.choice((0, 1))] )
+            chips = surplus   
+    
+    if len(chips) &lt;= 2:
+        return chips[0]
+    elif len(chips) == 3:
+        if test(chips[0],chips[1]):
+            return chips[0]
+        else:
+            return chips[2]
+    else:
+        print(&quot;Error!&quot;)
+        return        
+ 
+if __name__ == &quot;__main__&quot;:
+    target = main()
+    print(&quot;target:\nnumber {}\nquality {}&quot;.format( target.number, target.quality))
+</code></pre>
+</details>  

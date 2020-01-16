@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>test - 馒++</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    
+    <meta name="keywords" content="cocoa,"> 
+    <!-- <link href="{{ url_for('static',filename='js/diaspora.js') }}">
+    <link href="{{ url_for('static',filename='css/diaspora.js') }}"> -->
+    <script src="https://hotococoa.com/js/diaspora.js"></script>
+    <script src="https://hotococoa.com/css/diaspora.css"></script>
+    <!-- <link rel="stylesheet" href="/stitac/js/diaspora.js"> -->
+    <meta name="author" content="Hoto cocoa"> 
+    <link rel="alternative" href="atom.xml" title="馒++" type="application/atom+xml"> 
+    <!-- <link rel="icon" href="/img/logo.png">  -->
+    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"> -->
+    <!-- <link rel="stylesheet" href="/stitac/css/diaspora.css"> -->
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">馒++</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="https://www.hotococoa.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">test</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;" target="_blank" rel="noopener"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">test</h1>
+        <div class="stuff">
+            <span>一月 10, 2020</span>
+            
+
+        </div>
+        <div class="content markdown">
+            {{ archive }}
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://hotococoa.com/music/re.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    
+    </body>
+
+
+</html>

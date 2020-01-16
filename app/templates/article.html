@@ -1,0 +1,261 @@
+{% extends "base/hexo_article.html" %}
+
+{% block head %}   
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>{{ title }} - {{ sitename }} </title>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> 
+
+<meta name="keywords" content="{{ keywords }}"> 
+<meta name="description" content="{{ title }}"> 
+<meta name="author" content="{{ author }}"> 
+<link rel="alternative" href="atom.xml" title="{{ sitename }} " type="application/atom+xml"> 
+<link rel="icon" href="{{ url_for('static', filename = 'img/site/logo.png' ) }}">  
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/diaspora.css' ) }}">
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+href="{{ url_for('static', filename='img/site/logo_min.png') }}">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+href="{{ url_for('static', filename='img/site/logo_min.png') }}">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+href="{{ url_for('static', filename='img/site/logo_min.png') }}">
+<link rel="apple-touch-icon-precomposed"
+href="{{ url_for('static', filename='img/site/logo_min.png') }}">
+<link rel="icon" type="image/png"
+href="{{ url_for('static', filename='img/site/logo_min.png') }}">
+{% endblock %} 
+
+
+{% block body_head %} 
+    <span id="config-title" style="display:none">{{ sitename }}</span>
+    <div id="loader"></div>
+{% endblock  %} 
+ 
+
+{% block div_top %} 
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="{{ url_for('index.home') }}"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">{{ title }}</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;" target="_blank" rel="noopener"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+{% endblock  %} 
+
+
+{% block main %}  
+<div class='main'>
+    <h1 class="title">{{title}}</h1>
+    <div class="stuff">
+        <span>{{date}}</span>
+        
+<ul class="post-tags-list" itemprop="keywords">
+    {% if tags %}
+        {% for tag in tags %}
+            <li class="post-tags-list-item"> <a class="post-tags-list-link" href="/tags/Matplotlib/" rel="tag">{{tag}}</a> </li>
+        {% endfor %}
+    {% endif %}
+</ul>
+
+
+    </div>
+    <div class="content markdown">
+        {{article_main|safe}}
+
+        <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+        <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false" src="{{ active_music }}">
+            <source type="audio/mpeg" src="">
+        </audio>        
+        <ul id="audio-list" style="display:none">
+                    <li title='0' data-url=''></li>
+        </ul>
+    </div>
+ 
+
+<div class="comment-wrap">
+    <div id="comments" class="comments-area">
+
+        <h2>评论列表</h2>
+    <ol class="comment-list">
+        {% for commitem in comments %}
+        <li class="comment even thread-odd thread-alt depth-1 parent" id="comment-{{ commitem.id }}">
+            <div id="div-comment-{{ commitem.id }}" class="comment-body">
+                <div class="comment-author vcard">
+                    <img alt="" src="{{ commitem.vcardurl }}"
+                     srcset="{{ commitem.vcardurl }}" class="avatar avatar-40 photo"
+                     height="40" width="40"> <cite class="fn"><a href="http://www.rootpei.com" rel="external nofollow" class="url">{{ commitem.author }}</a></cite><span
+                     class="says">说道：</span> </div>
+        
+                <div class="comment-meta commentmetadata"><a href="">
+                        {{ commitem.date }} </a>
+                </div>
+        
+                <p>{{ commitem.comment }}</p>
+        
+                <div class="reply">
+                    <a rel="nofollow" class="comment-reply-link" href="#submit" 
+                    data-commentid="{{ commitem.id }}" data-fid="{{ commitem.fid }}" data-root=0  data-respondelement="respond"
+                     aria-label="回复给 {{ commitem.author }}" onclick="reply_click(this)">回复
+                     </a>
+                    </div>
+            </div>
+            
+            {% if commitem.add_comms %}
+            <ol class="children">
+                {% for add_comm in commitem.add_comms %}
+                <li class="comment odd alt depth-2" id="comment-{{ add_comm.id }}">
+                    <div id="div-comment-{{ add_comm.id }}" class="comment-body">
+                        <div class="comment-author vcard">
+                            <img alt="" src="{{ add_comm.vcardurl }}"
+                             srcset="{{ add_comm.vcardurl }}"
+                             class="avatar avatar-40 photo" height="40" width="40"> <cite class="fn">{{ add_comm.author }}</cite><span class="says">说道：</span>
+                        </div>
+        
+                        <div class="comment-meta commentmetadata"> 
+                                {{ add_comm.date }} 
+                        </div>
+        
+                        <p>{{ add_comm.comment }}</p>
+        
+                        <div class="reply"><a rel="nofollow" class="comment-reply-link" href="#submit"
+                             data-commentid="{{ add_comm.id }}" data-fid="{{ add_comm.fid }}" data-root = {{commitem.id}}  data-respondelement="respond"
+                             aria-label="回复给 {{ add_comm.author }}" onclick="reply_click(this)">回复</a></div>
+                    </div>
+                </li><!-- #comment-## -->
+                {% endfor %} 
+  
+                </li><!-- #comment-## -->
+            </ol><!-- .children -->
+            {% endif %}
+        </li><!-- #comment-## -->
+        {% endfor %} 
+    </ol>
+
+    
+<nav class="navigation comment-navigation" role="navigation" name="nav">
+    <h2 class="screen-reader-text">评论导航</h2>
+    <!-- <div class="nav-links"><div class="nav-previous"><a href="">较早评论</a></div></div> -->
+</nav>
+
+<div id="respond" class="comment-respond">
+	<h2 id="reply-title" class="comment-reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="#"
+             style="display:none;" onclick="reply_click(this)">取消回复</a></small></h2>
+             
+	<form action="{{ form_post_url }}" method="post" id="commentform" class="comment-form" name="comment-article-form">
+
+		<p class="comment-notes"><span id="email-notes">电子邮件地址不会被公开。</span> 必填项已用<span class="required">*</span>标注</p>
+
+		<p class="comment-form-comment"><label for="comment">评论</label> <textarea id="comment" name="comment" cols="45" rows="8"
+			 maxlength="65525" required="required"></textarea></p>
+
+		<p class="comment-form-author"><label for="author">姓名 <span class="required"></span></label>
+			<input id="author" name="author" type="text" value="" size="30" maxlength="245" placeholder="未署名的热心网友">
+		</p>
+
+        <p class="comment-form-email" id="comment-form-email" ><label for="email" id="comment-form-email-label">邮箱 <span class="required">*</span></label> 
+            <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required" placeholder="邮箱地址不会被公开 必填*" onblur="email_form()"></p>
+
+		<p class="comment-form-url"><label for="url">站点</label> <input id="url" name="site" type="text" value="" size="30"
+			 maxlength="200"></p>
+
+		<p class="form-submit" id="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="发表评论" > 
+		<input type="hidden"
+			 name="root" value="0" id="comment_root_id">
+ 
+		</p>
+		<p style="display: none;"><input type="hidden" id="comment_from_article" name="fid" value="{{ filename }}"></p>
+		<!-- <p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="137"></p> -->
+    </form>
+    
+</div><!-- #respond -->
+
+</div>
+
+    </div>
+</div> 
+{% endblock %}
+
+
+{% block gov %} 
+<p id = "gov" style="text-align: center;">
+    {{ gov }}
+</p>
+{% endblock  %} 
+
+
+{% block why_js_is_here %}    
+<!-- <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/googlecode.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script> -->
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="{{ url_for('static', filename = 'js/plugin.js' ) }}"></script>
+<script src="{{ url_for('static', filename = 'js/diaspora.js' ) }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename = 'photoswipe/photoswipe.css' )}}">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'photoswipe/default-skin/default-skin.css' ) }}">
+<script src="{{ url_for('static', filename = 'photoswipe/photoswipe.min.js' ) }}"></script>
+<script src="{{ url_for('static', filename = 'photoswipe/photoswipe-ui-default.min.js' ) }}"></script>
+<!-- <script >hljs.initHighlightingOnLoad();</script>   -->
+{% endblock  %} 
+
+{% block div_pswp %}   
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %} 
