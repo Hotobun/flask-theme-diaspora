@@ -12,7 +12,7 @@ cover: img/flask_diaspora.jpg
 已使用flask做后台  
 
 坑太多 慢慢填   
-hexo已部署到[码云](http://hotobun.gitee.com/hexo) 同步更新
+hexo已部署到[码云](http://hotobun.gitee.io/hexo) 同步更新
 
 *** 
 ## flask-theme-diaspora
