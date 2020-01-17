@@ -748,11 +748,15 @@ function new_json(){
 
 $(window).scroll(function () {
 //如果窗口划过的距离等于  页面高度减窗口高度   就说明已经到底部了 
-if (get_json_tur ){ 
-    if ($(window).scrollTop() == $(document).height() - $(window).height() ) {  
-        console.log("已经到底部");
-        new_json(); 
-    }}
+    console.log( $(window).scrollTop() , $(document).height() ,  $(window).height() )
+    if (get_json_tur ){ 
+        if ($(window).scrollTop() == $(document).height() - $(window).height() ) {  
+            console.log("已经到底部");
+            new_json(); 
+        }
+    } else {
+        console.log("get_json_tur", get_json_tur);
+    }
 });    
 
 // 获取滚动条坐标
