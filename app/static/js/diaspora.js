@@ -445,7 +445,7 @@ $(function() {
                         tag.attr('href', link).html('加载更多').data('status', 'loaded')
                         tag.data('page', parseInt(tag.data('page')) + 1)
                     } else {
-                        $('#pager').remove()
+                        // $('#pager').remove()
                     }
 					
 					var tempScrollTop = $(window).scrollTop()
