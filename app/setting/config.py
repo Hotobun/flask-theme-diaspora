@@ -82,5 +82,7 @@ index_image = 'img/index.jpg'
 # index_image = "http://hotobun.gitee.io/hexo/img/index.png"
 
 
+cwd = os.getcwd()
+
 if __name__ == "__main__":
     print(archive_path)

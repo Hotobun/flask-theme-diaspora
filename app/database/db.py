@@ -172,7 +172,7 @@ def insert_comment(item):
             new.author = config.default_user_name
         else:
             new.author = item['author']
-        new.vcardurl = item.get('vcardurl', '/img/number/{}.jpg'.format(random.randint(1,8)))
+        new.vcardurl = item.get('vcardurl', 'default_img')
         new.comment = item['comment']
         new.site = item['site']
         new.email = item['email']
@@ -188,6 +188,9 @@ def query_comment(fid, limit = 0):
     else:
         target = session.query(Comment).filter( Comment.fid == fid ).all()
     return target
+
+def query_comment_email(email):
+    return session.query(Comment).filter( Comment.email == email ).all()
 
 def Create_table():
     # 创建数据表

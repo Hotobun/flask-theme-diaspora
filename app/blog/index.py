@@ -10,11 +10,14 @@ index_bp = Blueprint("index",__name__ )
   
 @index_bp.route("/")
 def home(): 
+    image = config.index_image
+    if "http" not in image:
+        image = url_for("static", filename = config.index_image)
     d = { 
     'welcome' : db.query_filename("welcome"),
     'more' : url_for('jsonapi.get_json', args = "{}{}{}".format('index',config.jsonurl_split,1)) ,
     'gov'     : config.gov, 
-    'index_imageurl' :  config.index_image,
+    'index_imageurl' : image ,
     'copyright' : config.copyright,
     }
     return render_template("index.html", **d ) 
