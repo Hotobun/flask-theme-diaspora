@@ -743,7 +743,12 @@ function new_json(){
             add_archive(data);
         } 
     }  
-    json_xhr.send(); 
+    try{
+        json_xhr.send(); 
+    } catch (error){
+        console.log('error 正在重新请求 ');
+        setTimeout("new_json()", 2000);
+    }
 }
 
 $(window).scroll(function () {
