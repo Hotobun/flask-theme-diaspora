@@ -8,7 +8,7 @@ from app.blog.comments import comment_bp
 
 
 def create_app():
-    app = Flask(__name__, static_url_path='')
+    app = Flask(__name__, static_url_path='/static')
 
     app.register_blueprint(json_bp)
     app.register_blueprint(index_bp) 
