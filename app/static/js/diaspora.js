@@ -635,6 +635,152 @@ $(function() {
 
 })
 
+
+
+
+// 后面是我增加的 
+
+var get_json_tur = true;
+var site_indexpath = '/'
+var json_xhr = new XMLHttpRequest();
+
+function add_archive(data){
+    // console.log("已进入");
+    // console.log("data:",data);
+    // console.log(data["data"], data.data, data.more);
+    var primary = document.getElementById('primary');
+    var more_a = document.getElementById("moreurl");
+    var now_y = getScrollTop();
+    for (index in data.data){ 
+        item = data.data[index];
+        // console.log("item",item);
+        if(document.getElementById(item.filename)){
+            continue;
+        }
+        var new_div_post = document.createElement("div");
+        var new_a = document.createElement("a");
+        var new_img = document.createElement("img");
+        var new_div_else = document.createElement("div");
+        var new_else_h = document.createElement("h3");
+        var new_else_a = document.createElement("a");
+        var new_pdate = document.createElement("p");
+        var new_abstract = document.createElement("p");
+
+        new_div_post.className = "post";
+        new_div_else.className = 'else'
+        new_else_a.className = 'posttitle';
+        new_img.className = "cover";
+
+        new_div_post.id = item.filename;
+        new_a.href = item.href;
+        new_img.src = item.imgurl;
+        new_img.width = "680";
+        new_img.height = "440";
+        new_a.appendChild(new_img);
+
+        new_div_post.appendChild(new_a);
+
+        new_pdate.innerHTML = item.date;
+        new_abstract.innerHTML = item.abstract;
+        
+        new_else_a.href = item.href;
+        new_else_a.title = item.title;
+        new_else_a.text = item.title;
+
+        new_else_h.appendChild(new_else_a);
+        new_div_else.appendChild(new_pdate);            
+        new_div_else.appendChild(new_else_h);
+        new_div_else.appendChild(new_abstract);
+        
+        new_div_post.appendChild(new_div_else);
+
+        primary.append(new_div_post);
+        
+        // console.log("append done");
+        if (data.more){
+            if (data.more == "end"){
+                get_json_tur = false;
+                more_a.innerHTML = "没有更多";
+                more_a.href = "";
+                more_a.onclick = remove_pager;
+            }
+            else{
+                more_a.innerHTML = "加载更多";
+                more_a.href = data.more;
+            }
+        }
+        scrollTo(0,now_y);
+    } 
+} 
+
+// 请求json flag变量 如果到最后就不再判断
+
+
+// 该函数只在首页有效 加载文章
+function new_json(){
+    // console.log("URL", window.document.URL, window.location.pathname);
+    if (window.location.pathname != site_indexpath){
+        // console.log("URL:", window.document.URL,"pathname : ",  window.location.pathname);
+        // console.log("if window.location.pathname != site_indexpath --> True")
+        return 
+    }else{
+        // console.log("URL:", window.document.URL,"pathname : ",  window.location.pathname);
+    } 
+    var more_a = document.getElementById("moreurl");
+    if (!more_a){
+        return ;
+    }
+    more_a.innerHTML = "加载中...";
+    var jsonurl = more_a.href 
+    json_xhr.open('GET', jsonurl);
+    var count = 0
+    json_xhr.onreadystatechange = function (){ 
+        count = count +1 
+        var data = json_xhr.responseText;
+        if (data){
+            data = JSON.parse(data); 
+            add_archive(data);
+        } 
+    }  
+    json_xhr.send(); 
+}
+
+$(window).scroll(function () {
+//如果窗口划过的距离等于  页面高度减窗口高度   就说明已经到底部了 
+if (get_json_tur ){ 
+    if ($(window).scrollTop() == $(document).height() - $(window).height() ) {  
+            new_json(); 
+    }}
+});    
+
+// 获取滚动条坐标
+function getScrollTop(){ 
+var scrollTop=0; 
+if(document.documentElement&&document.documentElement.scrollTop){ 
+    scrollTop=document.documentElement.scrollTop; 
+}else if(document.body){ 
+    scrollTop=document.body.scrollTop; 
+} 
+return scrollTop; 
+}  
+
+// 首页加载完毕时调用js 加载文章数据
+window.onload=function(){ 
+if (this.document.getElementsByClassName('post').length < 1 ){
+    new_json();
+}
+else {
+    // console.log(this.document.getElementsByClassName('post').length )
+}
+};
+
+// 已经没有数据的时候 再次点击加载更多 会消失
+function remove_pager() { 
+    console.log("remove parger")
+    $('#pager').remove();
+}
+
+
 function reply_click(obj){
     if ($(obj).attr("class") == "comment-reply-link" ){ 
         var temp_small = "<small><a rel=\"nofollow\" id=\"cancel-comment-reply-link\" href=\"javascript:;\" onclick=\"reply_click(this)\">取消回复</a></small>";
