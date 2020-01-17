@@ -52,37 +52,37 @@ dtype('int32')
 ***
 #### ndarray对象常用属性  
   
-方法|说明
-:---|:---
-array.ndim|秩,即轴的数量或维度数量
-array.shape|ndarray对象的尺度,对于矩阵,n行m列
-array.size|ndarray对象元素个数,相当于.shape中n\*m的值  
-array.dtype| ndarray对象的元素类型
-array.itemsize|ndarray对象中每个元素的大小,以字节为单位
+| 方法           | 说明                                       |
+| :------------- | :----------------------------------------- |
+| array.ndim     | 秩,即轴的数量或维度数量                    |
+| array.shape    | ndarray对象的尺度,对于矩阵,n行m列          |
+| array.size     | ndarray对象元素个数,相当于.shape中n\*m的值 |
+| array.dtype    | ndarray对象的元素类型                      |
+| array.itemsize | ndarray对象中每个元素的大小,以字节为单位   |
 
 
 
 ***
 #### ndarray的元素类型
  
-数据类型|说明
-:---|:-
-bool|布尔类型, True或False
-intc|与C语言中int类型一致, 一半是int32或int64
-intp|用于索引的整数, 与C语言中ssize_t一致,int32或int64
-int8|字节长度的整数, 取值: [-128,127]
-int16|16位长度的整数, 取值: [-32768,32767]
-int32|32位长度的整数, 取值: [-pow(2,31), pow(2,31)-1]
-int64|64位长度的整数, 取值: [-pow(2,63), pow(2,63)-1]
-uint8|8位无符号整数, 取值: [0,255]
-uint16|16位无符号整数, 取值: [0,65535]
-uint32|32位无符号整数, 取值: [0,pow(2,32)-1]
-uint64|64位无符号整数, 取值: [0,pow(2,64)-1]
-float16|16位半精度浮点数, 1位符号位,5位指数,10位尾数
-float32|32位半精度浮点数, 1位符号位,8位指数,23位尾数
-float64|64位半精度浮点数, 1位符号位,11位指数,52位尾数
-complex64|复数类型,实部和虚部都是32位浮点数
-complex128|复数类型,实部和虚部都是64位浮点数
+| 数据类型   | 说明                                              |
+| :--------- | :------------------------------------------------ |
+| bool       | 布尔类型, True或False                             |
+| intc       | 与C语言中int类型一致, 一半是int32或int64          |
+| intp       | 用于索引的整数, 与C语言中ssize_t一致,int32或int64 |
+| int8       | 字节长度的整数, 取值: [-128,127]                  |
+| int16      | 16位长度的整数, 取值: [-32768,32767]              |
+| int32      | 32位长度的整数, 取值: [-pow(2,31), pow(2,31)-1]   |
+| int64      | 64位长度的整数, 取值: [-pow(2,63), pow(2,63)-1]   |
+| uint8      | 8位无符号整数, 取值: [0,255]                      |
+| uint16     | 16位无符号整数, 取值: [0,65535]                   |
+| uint32     | 32位无符号整数, 取值: [0,pow(2,32)-1]             |
+| uint64     | 64位无符号整数, 取值: [0,pow(2,64)-1]             |
+| float16    | 16位半精度浮点数, 1位符号位,5位指数,10位尾数      |
+| float32    | 32位半精度浮点数, 1位符号位,8位指数,23位尾数      |
+| float64    | 64位半精度浮点数, 1位符号位,11位指数,52位尾数     |
+| complex64  | 复数类型,实部和虚部都是32位浮点数                 |
+| complex128 | 复数类型,实部和虚部都是64位浮点数                 |
 
 ***
 #### ndarray创建方法
@@ -92,18 +92,18 @@ complex128|复数类型,实部和虚部都是64位浮点数
    * 当np.array()不指定dtype时,Numpy将根据数据情况关联一个dtype类型。
 * 使用Numpy中的函数创建ndarray数组,如arange、ones、zeros等
 
-函数|说明
-:--|:---
-np.arange(n)|类似range()函数,返回ndarray类型,元素从0-n-1
-np.ones(shape)|根据shape生成一个全1的数组,shape是元祖类型
-np.zeros(shape)|根据shape生成一个全0的数组,shape是元祖类型
-np.full(shape,val)|根据shape生成一个数组,每个元素的值都是val
-np.eye(n)|创建一个正方的n*n单位矩阵,对角线为1,其余为0
-np.ones_like(a)|根据数组a的形状生成一个全1数组
-np.zeros_like(a)|根据数组a的形状生成一个全0数组
-np.full_like(a,val)|根据数组a的星创生成一个数组,每个元素值都是val
-np.linspace()|根据起止数据间距地填充数据,形成数组
-np.concatenate()|将两个或多个数组合并成一个新数组
+| 函数                | 说明                                          |
+| :------------------ | :-------------------------------------------- |
+| np.arange(n)        | 类似range()函数,返回ndarray类型,元素从0-n-1   |
+| np.ones(shape)      | 根据shape生成一个全1的数组,shape是元祖类型    |
+| np.zeros(shape)     | 根据shape生成一个全0的数组,shape是元祖类型    |
+| np.full(shape,val)  | 根据shape生成一个数组,每个元素的值都是val     |
+| np.eye(n)           | 创建一个正方的n*n单位矩阵,对角线为1,其余为0   |
+| np.ones_like(a)     | 根据数组a的形状生成一个全1数组                |
+| np.zeros_like(a)    | 根据数组a的形状生成一个全0数组                |
+| np.full_like(a,val) | 根据数组a的星创生成一个数组,每个元素值都是val |
+| np.linspace()       | 根据起止数据间距地填充数据,形成数组           |
+| np.concatenate()    | 将两个或多个数组合并成一个新数组              |
 
 
 
@@ -131,12 +131,12 @@ array([ 1.  ,  4.  ,  7.  , 10.  ,  1.  ,  3.25,  5.5 ,  7.75])
  
 #### ndarray数组的维度变化
 
-方法|说明
-:--|:---
-.reshape(shape)|不改变数组元素，返回一个shape形状的数组，原数组不变
-.resize(shape)|与.reshape()功能一致，但改变原数组
-.swapaxes(ax1,ax2)|将数组n个维度中的两个维度进行调换
-.flatten()|将数组进行降维，返回折叠后的一位数组，原数组不变
+| 方法               | 说明                                                |
+| :----------------- | :-------------------------------------------------- |
+| .reshape(shape)    | 不改变数组元素，返回一个shape形状的数组，原数组不变 |
+| .resize(shape)     | 与.reshape()功能一致，但改变原数组                  |
+| .swapaxes(ax1,ax2) | 将数组n个维度中的两个维度进行调换                   |
+| .flatten()         | 将数组进行降维，返回折叠后的一位数组，原数组不变    |
 
 
 <details>
@@ -316,29 +316,29 @@ array([[[0.        , 0.08695652, 0.17391304, 0.26086957],
 对ndarray中的数据执行元素级运算的函数  
 注意原数组是否改变  
  
-函数|说明
-:--|:--
-np.abs(x) np.fabs(x) | 计算数组各元素的绝对值
-np.sqrt(x)|  计算数组各元素的平方根
-np.square(x)|  计算数组各元素的平方
-np.log(x) np.log10(x) np.log2(x)| 计算数组各元素自然对数、10低对数、2底对数
-np.eeil(x) np.floor(x)| 计算数组各元素ceiling值或floor值
-np.rint(x) |  计算数组各元素的四舍五入值
-np.modf(x) |  将数组各元素的小数和整数部分以两个独立数组形式返回
-np.cos(x) np.cosh(x)<br>np.sin(x) np.sinh(x)<br>np.tan(x) np.tanh(x)|计算数组各元素的普通型和双曲型三角函数
-np.exp(x) |  计算数组各元素的指数值
-np.sign(x) |  计算数组各元素的符号值, 1(+), 0, -1(-)
+| 函数                                                                 | 说明                                               |
+| :------------------------------------------------------------------- | :------------------------------------------------- |
+| np.abs(x) np.fabs(x)                                                 | 计算数组各元素的绝对值                             |
+| np.sqrt(x)                                                           | 计算数组各元素的平方根                             |
+| np.square(x)                                                         | 计算数组各元素的平方                               |
+| np.log(x) np.log10(x) np.log2(x)                                     | 计算数组各元素自然对数、10低对数、2底对数          |
+| np.eeil(x) np.floor(x)                                               | 计算数组各元素ceiling值或floor值                   |
+| np.rint(x)                                                           | 计算数组各元素的四舍五入值                         |
+| np.modf(x)                                                           | 将数组各元素的小数和整数部分以两个独立数组形式返回 |
+| np.cos(x) np.cosh(x)<br>np.sin(x) np.sinh(x)<br>np.tan(x) np.tanh(x) | 计算数组各元素的普通型和双曲型三角函数             |
+| np.exp(x)                                                            | 计算数组各元素的指数值                             |
+| np.sign(x)                                                           | 计算数组各元素的符号值, 1(+), 0, -1(-)             |
 
 ***
 #### npmpy二元函数
 注意 数据类型不同会结果转换类型
 
-函数|说明
-:--|:--
-+ - * / ** | 两个数组各元素进行对应运算
-np.maximum(x,y) np.fmax()<br>np.minimum(x,y) np.fmin()|元素级的最大值 最小值计算
-np.mod(x,y) | 元素级的模运算
-\> < >= <= == != | 算数比较，产生布尔类型数组
+| 函数                                                   | 说明                       |
+| :----------------------------------------------------- | :------------------------- |
+| + - * / **                                             | 两个数组各元素进行对应运算 |
+| np.maximum(x,y) np.fmax()<br>np.minimum(x,y) np.fmin() | 元素级的最大值 最小值计算  |
+| np.mod(x,y)                                            | 元素级的模运算             |
+| \> < >= <= == !=                                       | 算数比较，产生布尔类型数组 |
 
 ***
 ## CSV文件存储
@@ -409,18 +409,18 @@ np.load(fname)
 ## Numpy随机数函数
 Numpy的random子库
 
-函数|说明
-:--|:--
-rand(d0,d1,...dn) | 根据d0-dn创建随机数数组, 浮点数，[0,1),均匀分布
-randn(d0,d1,...dn)| 根据d0-dn创建随机数数组, 标准正态分布
-randint(low[,high,shape]) | 根据shape创建随整数或整数数组, 范围是[low,high]
-seed(s) | 随机数种子, s是给定的种子值
-shuffle(a)|根据数组a的第1轴进行随排列，改变数组a
-permutation(a)|根据数组a的第1轴产生一个新的乱序数组, 不改变原数组a
-choice(a[,size,replace,p])|从一维数组a中以概率p抽取元素, 形成size形状的新数组<br>replace表示是否可以重用已经抽取过的元素, 默认为False
-uniform(low,high,size)|产生具有均匀分布的数组,low起始值,high结束值,size形状
-normal(loc,scale,size)|产生具有正态分布的数组,low起始值,high结束值,size形状
-poisson(lam,size)|产生具有泊松分布的数组,low起始值,high结束值,size形状
+| 函数                       | 说明                                                                                                       |
+| :------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| rand(d0,d1,...dn)          | 根据d0-dn创建随机数数组, 浮点数，[0,1),均匀分布                                                            |
+| randn(d0,d1,...dn)         | 根据d0-dn创建随机数数组, 标准正态分布                                                                      |
+| randint(low[,high,shape])  | 根据shape创建随整数或整数数组, 范围是[low,high]                                                            |
+| seed(s)                    | 随机数种子, s是给定的种子值                                                                                |
+| shuffle(a)                 | 根据数组a的第1轴进行随排列，改变数组a                                                                      |
+| permutation(a)             | 根据数组a的第1轴产生一个新的乱序数组, 不改变原数组a                                                        |
+| choice(a[,size,replace,p]) | 从一维数组a中以概率p抽取元素, 形成size形状的新数组<br>replace表示是否可以重用已经抽取过的元素, 默认为False |
+| uniform(low,high,size)     | 产生具有均匀分布的数组,low起始值,high结束值,size形状                                                       |
+| normal(loc,scale,size)     | 产生具有正态分布的数组,low起始值,high结束值,size形状                                                       |
+| poisson(lam,size)          | 产生具有泊松分布的数组,low起始值,high结束值,size形状                                                       |
 
 <details>
   <summary> 举个栗子 </summary>
@@ -522,13 +522,13 @@ array([178, 113, 174, 128, 158, 193, 120, 156])
 ***
 ## Numpy的统计函数
 
-函数|说明 
-:--|:--
-sum(a, axis=None)|根据给定轴axis计算组a相关元素之和, axis整数或元祖
-mean(a, axis=None)|根据给定轴axis计算组a相关元素的期望, axis整数或元祖
-average(a, axis=None,weights=None)|根据给定轴axis计算组a相关元素的加权平均值
-std(a, axis=None)|根据给定轴axis计算组a相关元素的标准差
-var(a, axis=None)|根据给定轴axis计算组a相关元素的方差
+| 函数                               | 说明                                                |
+| :--------------------------------- | :-------------------------------------------------- |
+| sum(a, axis=None)                  | 根据给定轴axis计算组a相关元素之和, axis整数或元祖   |
+| mean(a, axis=None)                 | 根据给定轴axis计算组a相关元素的期望, axis整数或元祖 |
+| average(a, axis=None,weights=None) | 根据给定轴axis计算组a相关元素的加权平均值           |
+| std(a, axis=None)                  | 根据给定轴axis计算组a相关元素的标准差               |
+| var(a, axis=None)                  | 根据给定轴axis计算组a相关元素的方差                 |
 
 <details>
   <summary> 举个栗子 </summary>
@@ -554,13 +554,13 @@ array([5., 6., 7., 8., 9.])
 </details>  
   
   
-函数|说明 
-:--|:--
-min(a) max(a) | 计算数组a中元素最小值、最大值
-argmin(a) argmax(a) | 计算数组a中元素最小值、最大值的降一维后下标
-unravel_index(index,shape)| 根据shape将一维下标index转换成多维下标
-ptp(a) | 计算数组a中元素最大值与最小值的差
-median(a) | 计算数组a中元素的中位数 (中值)
+| 函数                       | 说明                                        |
+| :------------------------- | :------------------------------------------ |
+| min(a) max(a)              | 计算数组a中元素最小值、最大值               |
+| argmin(a) argmax(a)        | 计算数组a中元素最小值、最大值的降一维后下标 |
+| unravel_index(index,shape) | 根据shape将一维下标index转换成多维下标      |
+| ptp(a)                     | 计算数组a中元素最大值与最小值的差           |
+| median(a)                  | 计算数组a中元素的中位数 (中值)              |
 
 <details>
   <summary> 举个栗子 </summary>
@@ -596,9 +596,9 @@ array([[15, 14, 13, 12, 11],
 
 ## Numpy梯度函数
 只有一个 
-函数|说明 
-:--:|:--:
-np.gradient(f)|计算数组f中元素的梯度, 当f为多维时, 返回每个维度的梯度
+|      函数      |                          说明                          |
+| :------------: | :----------------------------------------------------: |
+| np.gradient(f) | 计算数组f中元素的梯度, 当f为多维时, 返回每个维度的梯度 |
 
 梯度：
   * 连续值之间的变化率,  即斜率。

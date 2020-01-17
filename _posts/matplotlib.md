@@ -99,32 +99,32 @@ if __name__ == "__main__":
 format_string 参数由颜色字符、风格字符和标记字符组成  
 如果不选择颜色 Matplotlib会为不同曲线选择唯一的颜色区分
 
-颜色字符|说明|颜色字符|说明 
-:--|:--|:--|:--
-'b'|蓝色|'m'|洋红色magenta
-'g'|绿色|'y'|黄色
-'r'|红色|'k'|黑色
-'c'|青绿色|'w'|白色
-'#123321'|用户控制颜色|0.8|灰度值字符串
+| 颜色字符  | 说明         | 颜色字符 | 说明          |
+| :-------- | :----------- | :------- | :------------ |
+| 'b'       | 蓝色         | 'm'      | 洋红色magenta |
+| 'g'       | 绿色         | 'y'      | 黄色          |
+| 'r'       | 红色         | 'k'      | 黑色          |
+| 'c'       | 青绿色       | 'w'      | 白色          |
+| '#123321' | 用户控制颜色 | 0.8      | 灰度值字符串  |
 
 
-风格字符|说明 
-:--|:--
-'\-'|实线
-'\-\-'|破折线
-'-.'|点划线
-':'|虚线
-''|无线条
+| 风格字符 | 说明   |
+| :------- | :----- |
+| '\-'     | 实线   |
+| '\-\-'   | 破折线 |
+| '-.'     | 点划线 |
+| ':'      | 虚线   |
+| ''       | 无线条 |
 
-标记字符|说明 |标记字符|说明 |标记字符|说明 |
-:--|:--|:--|:--|:--|:--
-'.'|点标记|'1'|下花三角标记|'h'|竖六边形标记
-','|像素点标记(极小)|'2'|上花三角标记|'H'|横六边形标记
-'o'|实心圈标记|'3'|左花三角标记|'+'|十字标记
-'v'|倒三角标记|'4'|右花三角标记|'x'|x标记
-'^'|上三角标记|'s'|实心方形标记|'D'|棱形标记
-'>'|右三角标记|'p'|实心五角标记|'d'|廋棱形标记
-'<'|左三角标记|'*'|星型标记|'\|'|竖线标记
+| 标记字符 | 说明             | 标记字符 | 说明         | 标记字符 | 说明         |
+| :------- | :--------------- | :------- | :----------- | :------- | :----------- |
+| '.'      | 点标记           | '1'      | 下花三角标记 | 'h'      | 竖六边形标记 |
+| ','      | 像素点标记(极小) | '2'      | 上花三角标记 | 'H'      | 横六边形标记 |
+| 'o'      | 实心圈标记       | '3'      | 左花三角标记 | '+'      | 十字标记     |
+| 'v'      | 倒三角标记       | '4'      | 右花三角标记 | 'x'      | x标记        |
+| '^'      | 上三角标记       | 's'      | 实心方形标记 | 'D'      | 棱形标记     |
+| '>'      | 右三角标记       | 'p'      | 实心五角标记 | 'd'      | 廋棱形标记   |
+| '<'      | 左三角标记       | '*'      | 星型标记     | '\|'     | 竖线标记     |
 
 ![matplotlib5](/img/archive_img/matplotlib5.png)
 
@@ -184,22 +184,22 @@ if __name__ == "__main__":
 
 rcParams的属性 
 
-属性|说明 
-:--|--
-"font.family"|用于显示字体的名字
-"font.style"|字体风格, 正常"normal" 或 斜体 "italic"
-"font.size"|字体大小, 整数字号或"large"、"x-small"
+| 属性          | 说明                                    |
+| :------------ | --------------------------------------- |
+| "font.family" | 用于显示字体的名字                      |
+| "font.style"  | 字体风格, 正常"normal" 或 斜体 "italic" |
+| "font.size"   | 字体大小, 整数字号或"large"、"x-small"  |
 
 目前只有中文黑体和楷体可以用 稍后研究  
 
-中文字体|说明 
-:--|:--
-"SimHei"|中文黑体
-"Kaiti"|中文楷体
-"LiSu"|中文隶书
-"FangSong"|中文仿宋
-"YouYuan"|中文幼圆
-"STSong"|华文宋体
+| 中文字体   | 说明     |
+| :--------- | :------- |
+| "SimHei"   | 中文黑体 |
+| "Kaiti"    | 中文楷体 |
+| "LiSu"     | 中文隶书 |
+| "FangSong" | 中文仿宋 |
+| "YouYuan"  | 中文幼圆 |
+| "STSong"   | 华文宋体 |
 
 ``` python
 import numpy as np 
@@ -245,14 +245,14 @@ if __name__ == "__main__":
 ***
 ## pyplot的文本显示函数
 
-函数|说明 
-:--|:--
-plt.xlabel()|对X轴增加文本标签
-plt.ylabel()|对Y轴增加文本标签
-plt.title()|对圆形整体增加文本标签
-plt.text()|在任意位置增加文本
-plt.annotate()|在图形中增加带箭头的注释
-plt.grid(True)|图层显示网格
+| 函数           | 说明                     |
+| :------------- | :----------------------- |
+| plt.xlabel()   | 对X轴增加文本标签        |
+| plt.ylabel()   | 对Y轴增加文本标签        |
+| plt.title()    | 对圆形整体增加文本标签   |
+| plt.text()     | 在任意位置增加文本       |
+| plt.annotate() | 在图形中增加带箭头的注释 |
+| plt.grid(True) | 图层显示网格             |
 
 plt.annotate函数参数  
 plt.annotate(s, xy= arrow_crd, xytext=text_crd, arrowprops=dict)
@@ -363,24 +363,24 @@ if __name__ == "__main__":
 *** 
 ## pyplot常用基础图表函数
 
-函数|说明| 
-:--|:--|
-plt.plot(x, y, fmt, ...)|绘制一个坐标图
-plt.boxplot(data, notch, position)|绘制一个箱形图
-plt.bar(left, height, width, bottom)|绘制一个条形图
-plt.barh(width, bottom, left, height)|绘制一个横向条形图
-plt.polar(theta, r) | 绘制极坐标图(这是啥)
-plt.pie(data,  explode)|绘制饼图
-plt.psd(x, NFFT=256, pad_to, Fs) | 绘制功率谱密度图
-plt.specgram(x, NFFT=256, pad_to, Fs)|绘制谱图
-plt.eohere(x, y, NFFT=256, Fs) | 绘制X-Y相关性图
-plt.scatter(x, y) | 绘制散点图, 其中 x和y长度相同
-plt.step(x, y, where) | 绘制步阶图
-plt.hist(x, bins, normed) | 绘制直方图
-plt.contour(X, Y, Z, N) | 绘制等值图
-plt.vlines() | 绘制垂直图
-plt.stem(x, y, linefmt, markerfmt)|绘制火柴图
-plt.plot_date()|绘制数据日期
+| 函数                                  | 说明                          |
+| :------------------------------------ | :---------------------------- |
+| plt.plot(x, y, fmt, ...)              | 绘制一个坐标图                |
+| plt.boxplot(data, notch, position)    | 绘制一个箱形图                |
+| plt.bar(left, height, width, bottom)  | 绘制一个条形图                |
+| plt.barh(width, bottom, left, height) | 绘制一个横向条形图            |
+| plt.polar(theta, r)                   | 绘制极坐标图(这是啥)          |
+| plt.pie(data,  explode)               | 绘制饼图                      |
+| plt.psd(x, NFFT=256, pad_to, Fs)      | 绘制功率谱密度图              |
+| plt.specgram(x, NFFT=256, pad_to, Fs) | 绘制谱图                      |
+| plt.eohere(x, y, NFFT=256, Fs)        | 绘制X-Y相关性图               |
+| plt.scatter(x, y)                     | 绘制散点图, 其中 x和y长度相同 |
+| plt.step(x, y, where)                 | 绘制步阶图                    |
+| plt.hist(x, bins, normed)             | 绘制直方图                    |
+| plt.contour(X, Y, Z, N)               | 绘制等值图                    |
+| plt.vlines()                          | 绘制垂直图                    |
+| plt.stem(x, y, linefmt, markerfmt)    | 绘制火柴图                    |
+| plt.plot_date()                       | 绘制数据日期                  |
 
 *** 
 ### 绘制饼图 
