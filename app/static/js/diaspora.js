@@ -750,7 +750,7 @@ $(window).scroll(function () {
 //如果窗口划过的距离等于  页面高度减窗口高度   就说明已经到底部了 
     console.log( $(window).scrollTop() , $(document).height() ,  $(window).height() )
     if (get_json_tur ){ 
-        if ($(window).scrollTop() == $(document).height() - $(window).height() ) {  
+        if ($(window).scrollTop() > $(document).height() - $(window).height() -3 ) {  
             console.log("已经到底部");
             new_json(); 
         }
