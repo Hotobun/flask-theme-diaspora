@@ -76,7 +76,8 @@ music = 'gabriel.mp3'
 # 不使用图床的话 要用 url_for("static", filename='img/filename.jpg') 
 image_site = "http://hotobun.gitee.io/hexo/"
 
-index_image = 'img/index.png'
+# index_image = 'img/index.png'
+index_image = 'https://s2.ax1x.com/2020/01/17/lxgfxO.jpg'
 
 if __name__ == "__main__":
     print(archive_path)
