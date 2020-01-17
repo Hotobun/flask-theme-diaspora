@@ -65,7 +65,8 @@ def comment_post(filename):
                     if c.seconds < 10:
                         return redirect(url_for("article.archive",filename=data['fid'])  )
 
-        data['vcardurl'] = get_gravatar_image(data['email'])
+        data['vcardurl'] = get_gravatar_image(data['email']) 
+        data['comment'] = mistletoe.markdown(data['comment'])
         db.insert_comment(data)
 
     return redirect(url_for("article.archive",filename=data['fid'])  )
