@@ -645,7 +645,7 @@ var site_indexpath = '/'
 var json_xhr = new XMLHttpRequest();
 
 function add_archive(data){
-    // console.log("已进入");
+    console.log("function add_archive");
     // console.log("data:",data);
     // console.log(data["data"], data.data, data.more);
     var primary = document.getElementById('primary');
@@ -655,6 +655,7 @@ function add_archive(data){
         item = data.data[index];
         // console.log("item",item);
         if(document.getElementById(item.filename)){
+            console.log("function new_json 已存在文章 ", item.filename)
             continue;
         }
         var new_div_post = document.createElement("div");
@@ -718,7 +719,7 @@ function add_archive(data){
 
 // 该函数只在首页有效 加载文章
 function new_json(){
-    // console.log("URL", window.document.URL, window.location.pathname);
+    console.log("function new_json")
     if (window.location.pathname != site_indexpath){
         // console.log("URL:", window.document.URL,"pathname : ",  window.location.pathname);
         // console.log("if window.location.pathname != site_indexpath --> True")
@@ -749,7 +750,8 @@ $(window).scroll(function () {
 //如果窗口划过的距离等于  页面高度减窗口高度   就说明已经到底部了 
 if (get_json_tur ){ 
     if ($(window).scrollTop() == $(document).height() - $(window).height() ) {  
-            new_json(); 
+        console.log("已经到底部");
+        new_json(); 
     }}
 });    
 
