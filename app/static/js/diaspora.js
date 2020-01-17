@@ -645,7 +645,7 @@ var site_indexpath = '/'
 var json_xhr = new XMLHttpRequest();
 
 function add_archive(data){
-    console.log("function add_archive");
+    // console.log("function add_archive");
     // console.log("data:",data);
     // console.log(data["data"], data.data, data.more);
     var primary = document.getElementById('primary');
@@ -719,7 +719,7 @@ function add_archive(data){
 
 // 该函数只在首页有效 加载文章
 function new_json(){
-    console.log("function new_json")
+    // console.log("function new_json")
     if (window.location.pathname != site_indexpath){
         // console.log("URL:", window.document.URL,"pathname : ",  window.location.pathname);
         // console.log("if window.location.pathname != site_indexpath --> True")
@@ -748,14 +748,16 @@ function new_json(){
 
 $(window).scroll(function () {
 //如果窗口划过的距离等于  页面高度减窗口高度   就说明已经到底部了 
-    console.log( $(window).scrollTop() , $(document).height() ,  $(window).height() )
+// $(window).scrollTop() == $(document).height() - $(window).height() 
+// QQ浏览器会算小数点 划过距离不等于页面高度减窗口高度 到底了无效 比喻 99.6666 != 200 - 100 
+    // console.log( $(window).scrollTop() , $(document).height() ,  $(window).height() )
     if (get_json_tur ){ 
-        if ($(window).scrollTop() > $(document).height() - $(window).height() -3 ) {  
+        if ($(window).scrollTop() > $(document).height() - $(window).height() - 3 ) {  
             console.log("已经到底部");
             new_json(); 
         }
     } else {
-        console.log("get_json_tur", get_json_tur);
+        // console.log("get_json_tur", get_json_tur);
     }
 });    
 
