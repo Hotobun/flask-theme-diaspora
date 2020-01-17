@@ -2,9 +2,9 @@
 title: 爬取B站所有番剧入库MySql
 date: 2019-12-23 17:12:41
 tags: 
-- "mysql"
-- "spider"
-- "python"
+- mysql
+- spider
+- python
 categories:
 cover: /img/bilibili_anime.jpg
 ---
