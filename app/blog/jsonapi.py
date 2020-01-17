@@ -16,12 +16,16 @@ def get_json(args):
     sql_data = db.query_archive(tag, index)
     temp = []
     number = int(index) - 1
+
     for item in sql_data:  
+        new_imgurl = item.imgurl 
+        if config.image_bed:
+            new_imgurl = config.image_site + item.imgurl
         temp.append( { 
             "filename" : item.filename,
             "href":item.href,
             # "imgurl": url_for('static', filename=item.imgurl) ,
-            "imgurl": "http://hotobun.gitee.io/hexo/"+item.imgurl,
+            "imgurl": new_imgurl,
             # "imgurl" : url_for("static", filename = "img/number/{}.jpg".format(number%8 + 1 )),
             "date":  item.date.strftime("%B %d,%Y"),
             "abstract": item.abstract,

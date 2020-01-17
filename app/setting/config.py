@@ -74,6 +74,7 @@ music = 'gabriel.mp3'
 
 # 图床首页 使用时 image_site + img/filename.jpg 大概
 # 不使用图床的话 要用 url_for("static", filename='img/filename.jpg') 
+image_bed = True
 image_site = "https://hotobun.gitee.io/hexo/"
 
 index_image = 'img/index.jpg'
