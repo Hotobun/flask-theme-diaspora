@@ -655,7 +655,7 @@ function add_archive(data){
         item = data.data[index];
         // console.log("item",item);
         if(document.getElementById(item.filename)){
-            console.log("function new_json 已存在文章 ", item.filename)
+            // console.log("function new_json 已存在文章 ", item.filename)
             continue;
         }
         var new_div_post = document.createElement("div");
@@ -753,7 +753,7 @@ $(window).scroll(function () {
     // console.log( $(window).scrollTop() , $(document).height() ,  $(window).height() )
     if (get_json_tur ){ 
         if ($(window).scrollTop() > $(document).height() - $(window).height() - 3 ) {  
-            console.log("已经到底部");
+            // console.log("已经到底部");
             new_json(); 
         }
     } else {
