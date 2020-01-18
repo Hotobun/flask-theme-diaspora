@@ -186,9 +186,9 @@ def insert_comment(item):
 
 def query_comment(fid, limit = 0):
     if limit:
-        target = session.query(Comment).filter( Comment.fid == fid ).limit(limit).all()
+        target = session.query(Comment).filter( Comment.isdel == False, Comment.fid == fid ).limit(limit).all()
     else:
-        target = session.query(Comment).filter( Comment.fid == fid ).all()
+        target = session.query(Comment).filter( Comment.isdel == False, Comment.fid == fid ).all()
     return target
 
 def query_comment_email(email):
