@@ -72,14 +72,13 @@ def comment_post(filename):
             data['author'] = config.default_user_name
         data['vcardurl'] = get_gravatar_image(data['email']) 
         data['comment'] = mistletoe.markdown(data['comment'])
+        data['ip'] = request.remote_addr
         db.insert_comment(data) 
     resp = make_response(redirect(url_for("article.archive",filename=data['fid'])))
     resp.set_cookie('user',data['author'], max_age=config.cookie_max_age)
     resp.set_cookie('email',data['email'], max_age=config.cookie_max_age)
     resp.set_cookie('site',data['site'], max_age=config.cookie_max_age)
     return resp
-
-
 
 def get_sql_comments(filename):
     # rtype : list

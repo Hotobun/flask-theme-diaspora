@@ -150,6 +150,7 @@ class Comment(Base):
     comment = Column(String(1000))
     site = Column(String(300))
     email = Column(String(300))
+    ip = Column(String(300))
     isdel = Column(Boolean, default = False )
 
     __mapper_args__ = {
@@ -176,6 +177,7 @@ def insert_comment(item):
         new.comment = item['comment']
         new.site = item['site']
         new.email = item['email']
+        new.ip = item.get("ip", '')
         new.isdel = False
 
         session.add(new)

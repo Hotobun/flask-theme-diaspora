@@ -20,4 +20,9 @@ def home():
     'index_imageurl' : image ,
     'copyright' : config.copyright,
     }
-    return render_template("index.html", **d ) 
+    p_here = {
+        'letter':23333,
+        'view':11111,
+        'like': 56668,
+    }
+    return render_template("index.html", **d, p_here = p_here ) 
