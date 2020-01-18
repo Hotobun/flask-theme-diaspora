@@ -1,4 +1,4 @@
-from flask import url_for, render_template, request, redirect
+from flask import url_for, render_template, request, redirect, make_response, Response
 import sys 
 sys.path.append(".")
 from app.database import db 
@@ -64,12 +64,20 @@ def comment_post(filename):
                     c = datetime.datetime.now() - low.date 
                     if c.seconds < 10:
                         return redirect(url_for("article.archive",filename=data['fid'])  )
-
+        # if not item['author']:
+        #     new.author = config.default_user_name
+        # else:
+        #     new.author = item['author']
+        if not data['author']:
+            data['author'] = config.default_user_name
         data['vcardurl'] = get_gravatar_image(data['email']) 
         data['comment'] = mistletoe.markdown(data['comment'])
-        db.insert_comment(data)
-
-    return redirect(url_for("article.archive",filename=data['fid'])  )
+        db.insert_comment(data) 
+    resp = make_response(redirect(url_for("article.archive",filename=data['fid'])))
+    resp.set_cookie('user',data['author'], max_age=config.cookie_max_age)
+    resp.set_cookie('email',data['email'], max_age=config.cookie_max_age)
+    resp.set_cookie('site',data['site'], max_age=config.cookie_max_age)
+    return resp
 
 
 

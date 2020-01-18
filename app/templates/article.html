@@ -103,7 +103,7 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
                         {{ commitem.date }} </a>
                 </div>
         
-                <p>{{ commitem.comment }}</p>
+                <p>{{commitem.comment|safe}}</p>
         
                 <div class="reply">
                     <a rel="nofollow" class="comment-reply-link" href="#submit" 
@@ -128,7 +128,7 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
                                 {{ add_comm.date }} 
                         </div>
         
-                        <p>{{ add_comm.comment }}</p>
+                        <p>{{add_comm.comment|safe}}</p>
         
                         <div class="reply"><a rel="nofollow" class="comment-reply-link" href="#submit"
                              data-commentid="{{ add_comm.id }}" data-fid="{{ add_comm.fid }}" data-root = {{commitem.id}}  data-respondelement="respond"
@@ -162,13 +162,13 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
 			 maxlength="65525" required="required"></textarea></p>
 
 		<p class="comment-form-author"><label for="author">姓名 <span class="required"></span></label>
-			<input id="author" name="author" type="text" value="" size="30" maxlength="245" placeholder="未署名的热心网友">
+			<input id="author" name="author" type="text" value="{%if cookie%}{{cookie.user}}{%endif%}" size="30" maxlength="245" placeholder="未署名的热心网友">
 		</p>
 
         <p class="comment-form-email" id="comment-form-email" ><label for="email" id="comment-form-email-label">邮箱 <span class="required">*</span></label> 
-            <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required" placeholder="邮箱地址不会被公开 必填*" onblur="email_form()"></p>
+            <input id="email" name="email" type="text" value="{%if cookie%}{{cookie.email}}{%endif%}" size="30" maxlength="100" aria-describedby="email-notes" required="required" placeholder="邮箱地址不会被公开 必填*" onblur="email_form()"></p>
 
-		<p class="comment-form-url"><label for="url">站点</label> <input id="url" name="site" type="text" value="" size="30"
+		<p class="comment-form-url"><label for="url">站点</label> <input id="url" name="site" type="text" value="{%if cookie%}{{cookie.site}}{%endif%}" size="30"
 			 maxlength="200"></p>
 
 		<p class="form-submit" id="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="发表评论" > 

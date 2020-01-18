@@ -1,4 +1,4 @@
-from flask import url_for, render_template 
+from flask import url_for, render_template, request
 import sys 
 sys.path.append(".")
 from app.database import db 
@@ -29,11 +29,16 @@ def archive(filename):
                 'tags'          : sql_item.tags.split(" "),
                 'active_music'  : url_for('static', filename = "music/{}".format(config.music)), 
                 'form_post_url': url_for('comment.comment_post',filename = sql_item.filename)
+            } 
+            cookie = {
+                'user':request.cookies.get("user",''),
+                'email':request.cookies.get("email",''),
+                'site':request.cookies.get("site",'')
             }
             # comments = get_sql_comments(sql_item.filename)
             comments = get_sql_comments(sql_item.filename)
             # print("d[article_content]", d['article_content']) 
-            return render_template('article.html', **d, comments = comments)
+            return render_template('article.html', **d, comments = comments, cookie = cookie)
     
     return "文章不存在"
- 
+

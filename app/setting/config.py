@@ -85,5 +85,10 @@ index_image = 'img/index.jpg'
 
 cwd = os.getcwd()
 
+
+# cookie 过期时间  存储用户名和邮箱 方便再次留言不需要再填写
+cookie_max_age = 60*60*24*30
+
+
 if __name__ == "__main__":
     print(archive_path)
