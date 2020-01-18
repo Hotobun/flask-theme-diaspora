@@ -103,7 +103,7 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
                         {{ commitem.date }} </a>
                 </div>
         
-                <p>{{commitem.comment|safe}}</p>
+                {{commitem.comment|safe}} 
         
                 <div class="reply">
                     <a rel="nofollow" class="comment-reply-link" href="#submit" 
@@ -128,7 +128,7 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
                                 {{ add_comm.date }} 
                         </div>
         
-                        <p>{{add_comm.comment|safe}}</p>
+                        {{add_comm.comment|safe}} 
         
                         <div class="reply"><a rel="nofollow" class="comment-reply-link" href="#submit"
                              data-commentid="{{ add_comm.id }}" data-fid="{{ add_comm.fid }}" data-root = {{commitem.id}}  data-respondelement="respond"
