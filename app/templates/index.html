@@ -53,7 +53,11 @@
 
 {% block idnex_more %}
     {% if more %}
-      <div id="pager"><a href="{{ more }}" class="more" id = "moreurl" οnclick="new_json()">加载更多</a></div>
+    <div id="pager">
+        <button class='more' onclick="new_json()" id="more_button">加载更多</button>
+        <!-- <a href="javascript:;" class="more" οnclick="new_json()">加载更多</a> -->
+        <a href="{{ more }}" id = "moreurl" style="display: none;">你看不见我</a>
+    </div>
     {% endif%}
 {% endblock %}  
 

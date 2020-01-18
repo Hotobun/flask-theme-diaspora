@@ -419,46 +419,46 @@ $(function() {
             break;
 
             // next page
-            // case (tag.indexOf('more') != -1):
-            //     tag = $('.more');
+            case (tag.indexOf('more') != -1):
+                tag = $('.more');
 
-            //     if (tag.data('status') == 'loading') {
-            //         return false
-            //     }
+                if (tag.data('status') == 'loading') {
+                    return false
+                }
 
-            //     var num = parseInt(tag.data('page')) || 1;
+                var num = parseInt(tag.data('page')) || 1;
 
-            //     if (num == 1) {
-            //         tag.data('page', 1)
-            //     }
+                if (num == 1) {
+                    tag.data('page', 1)
+                }
 
-            //     if (num >= Pages) {
-            //         return
-            //     }
+                if (num >= Pages) {
+                    return
+                }
 
-            //     tag.html('加载中..').data('status', 'loading')
-            //     Diaspora.loading()
+                tag.html('加载中..').data('status', 'loading')
+                Diaspora.loading()
 
-            //     Diaspora.L(tag.attr('href'), function(data) {
-            //         var link = $(data).find('.more').attr('href');
-            //         if (link != undefined) {
-            //             tag.attr('href', link).html('加载更多').data('status', 'loaded')
-            //             tag.data('page', parseInt(tag.data('page')) + 1)
-            //         } else {
-            //             // $('#pager').remove()
-            //         }
+                Diaspora.L(tag.attr('href'), function(data) {
+                    var link = $(data).find('.more').attr('href');
+                    if (link != undefined) {
+                        tag.attr('href', link).html('加载更多').data('status', 'loaded')
+                        tag.data('page', parseInt(tag.data('page')) + 1)
+                    } else {
+                        // $('#pager').remove()
+                    }
 					
-			// 		var tempScrollTop = $(window).scrollTop()
-            //         $('#primary').append($(data).find('.post'))
-			// 		$(window).scrollTop(tempScrollTop)
-            //         Diaspora.loaded()
-			// 		$('html,body').animate({ scrollTop: tempScrollTop + 400 }, 500)
-            //     }, function() {
-            //         tag.html('加载更多').data('status', 'loaded')
-            //     })
+					var tempScrollTop = $(window).scrollTop()
+                    $('#primary').append($(data).find('.post'))
+					$(window).scrollTop(tempScrollTop)
+                    Diaspora.loaded()
+					$('html,body').animate({ scrollTop: tempScrollTop + 400 }, 500)
+                }, function() {
+                    tag.html('加载更多').data('status', 'loaded')
+                })
 
-            //     return false;
-            // break;
+                return false;
+            break;
 
             // post images
             case (tag.indexOf('icon-images') != -1):
@@ -650,6 +650,7 @@ function add_archive(data){
     // console.log(data["data"], data.data, data.more);
     var primary = document.getElementById('primary');
     var more_a = document.getElementById("moreurl");
+    var more_button = document.getElementById("more_button");
     var now_y = getScrollTop();
     for (index in data.data){ 
         item = data.data[index];
@@ -701,12 +702,12 @@ function add_archive(data){
         if (data.more){
             if (data.more == "end"){
                 get_json_tur = false;
-                more_a.innerHTML = "没有更多";
+                more_button.innerHTML = "没有更多";
                 more_a.href = "";
-                more_a.onclick = remove_pager;
+                more_button.onclick = remove_pager;
             }
             else{
-                more_a.innerHTML = "加载更多";
+                more_button.innerHTML = "加载更多";
                 more_a.href = data.more;
             }
         }
@@ -727,11 +728,13 @@ function new_json(){
     }else{
         // console.log("URL:", window.document.URL,"pathname : ",  window.location.pathname);
     } 
+    var more_button = document.getElementById("more_button");
     var more_a = document.getElementById("moreurl");
     if (!more_a){
         return ;
     }
-    more_a.innerHTML = "加载中...";
+    more_button.innerHTML = "加载中...";
+    // console.log(more_button, "加载中")
     var jsonurl = more_a.href 
     json_xhr.open('GET', jsonurl);
     var count = 0
