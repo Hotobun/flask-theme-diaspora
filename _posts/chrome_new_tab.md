@@ -49,6 +49,7 @@ cover: img/chrome_new_tab.jpg
 ![](/img/archive_img/chrome_new_tab4.png)
 
 ## 魔改
+[infinity安装包](https://github.com/Hotobun/chrome_infinity)
 官方的配置已经够好了 但是还有所欠缺 每个人胃口不同。
 * 修改了图标位置 固定在窗口最下方 
 * 隐藏了网站图标的文字 看头像认人的时代 还是不喜欢文字占地方
