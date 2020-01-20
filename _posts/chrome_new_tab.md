@@ -3,7 +3,7 @@ title: 制作chrome浏览器新标签页
 date: 2020-1-20 14:01:43
 tags: 
 - chrome 
-cover: /img/chrome_new_tab.jpg
+cover: img/chrome_new_tab.jpg
 ---
 
 ## chrome扩展程序是什么
@@ -22,13 +22,13 @@ cover: /img/chrome_new_tab.jpg
 ## 如何制作
  
 我们先来看个最低配置例子  
-![](/hexo/img/archive_img/chrome_new_tab2.png)
+![](img/archive_img/chrome_new_tab2.png)
 然后开启开发者模式 加载已解压的扩展程序 选择上面写代码的文件夹
 最后得到我们的cocoa 1 扩展 
-![](/hexo/img/archive_img/chrome_new_tab3.png)
+![](img/archive_img/chrome_new_tab3.png)
 
 打开新标签 熟悉的hello world! 来了
-![](/hexo/img/archive_img/chrome_new_tab1.png)
+![](img/archive_img/chrome_new_tab1.png)
 
 有了这个知识 就能做更多自定义的功能了   
 喜欢什么加什么 不必受限于大众化的首页  
@@ -46,7 +46,7 @@ cover: /img/chrome_new_tab.jpg
    * 不能离线使用 本质其实是指向其他网页 既然用户要使用 直接主页设置为那个网页不就完了 要扩展何用。
 
 最后 我发现了Infinity Pro 当我看到自定义布局时 我就知道这是我想要的标签页
-![](/hexo/img/archive_img/chrome_new_tab4.png)
+![](img/archive_img/chrome_new_tab4.png)
 
 ## 魔改
 官方的配置已经够好了 但是还有所欠缺 每个人胃口不同。
@@ -119,5 +119,5 @@ window.onload = function () {
 </details>  
 
 最后两幅效果图
-![](/hexo/img/archive_img/chrome_new_tab5.png)
-![](/hexo/img/archive_img/chrome_new_tab6.png)
+![](img/archive_img/chrome_new_tab5.png)
+![](img/archive_img/chrome_new_tab6.png)
