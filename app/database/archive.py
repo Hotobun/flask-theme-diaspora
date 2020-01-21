@@ -48,6 +48,7 @@ def items():
                 abstract = ''
                 l = False
                 text = f.read()
+                text = text.replace("](/img/archive_img", '](/static/img/archive_img')
                 m = markdown.markdown(text[:200]) 
                 for i in m:
                     if i == "<"  :

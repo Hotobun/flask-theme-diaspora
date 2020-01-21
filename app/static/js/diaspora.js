@@ -612,6 +612,47 @@ $(function() {
                 Diaspora.HS($(e.target), 'replace')
                 return false;
             break;
+            
+            // photoswipe
+            case (tag.indexOf('pimg') != -1):
+                var pswpElement = $('.pswp').get(0);
+                if (pswpElement) {
+                    var items = [];
+                    var index = 0;
+                    var imgs = [];
+                    $('.content img').each(function(i, v){
+                        // get index
+                        if (e.target.src == v.src) {
+                            index = i;
+                        }
+                        var item = {
+                            src: v.src,
+                            w: v.naturalWidth,
+                            h: v.naturalHeight
+                        };
+                        imgs.push(v);
+                        items.push(item);
+                    });
+                    var options = {
+                        index: index,
+                        shareEl: false,
+                        zoomEl: false,
+                        allowRotationOnUserZoom: true,
+                        history: false,
+                        getThumbBoundsFn: function(index) {
+                            // See Options -> getThumbBoundsFn section of documentation for more info
+                            var thumbnail = imgs[index],
+                                pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                                rect = thumbnail.getBoundingClientRect(); 
+
+                            return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+                        }
+                    };
+                    var lightBox= new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+                    lightBox.init();
+                }
+                return false;
+                break;
 
             // quick view
             case (tag.indexOf('pviewa') != -1):
@@ -639,7 +680,7 @@ $(function() {
 
 
 // 后面是我增加的 
-
+// 请求json flag变量 如果到最后就不再判断
 var get_json_tur = true;
 var site_indexpath = '/'
 var json_xhr = new XMLHttpRequest();
@@ -715,9 +756,6 @@ function add_archive(data){
     } 
 } 
 
-// 请求json flag变量 如果到最后就不再判断
-
-
 // 该函数只在首页有效 加载文章
 function new_json(){
     // console.log("function new_json")
@@ -754,6 +792,7 @@ function new_json(){
     }
 }
 
+// 滑动到底部获取新文章
 $(window).scroll(function () {
 //如果窗口划过的距离等于  页面高度减窗口高度   就说明已经到底部了 
 // $(window).scrollTop() == $(document).height() - $(window).height() 
