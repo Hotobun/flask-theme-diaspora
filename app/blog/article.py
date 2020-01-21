@@ -11,10 +11,11 @@ from app.blog.comments import get_sql_comments
 
 
 article_bp = Blueprint("article",__name__, url_prefix="/article")
+class_archive = db.Archive()
 
 @article_bp.route("/<filename>")
 def archive(filename): 
-    sql_item = db.query_filename(filename)
+    sql_item = class_archive.query_filename(filename=filename)
     if sql_item and sql_item.isdel == False:
         target_path = os.path.join(config.archive_path, filename + ".md")
         if os.path.isfile(target_path):

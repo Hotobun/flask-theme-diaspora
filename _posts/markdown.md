@@ -35,7 +35,7 @@ cover: /img/markdown.png
 ## 图片
 ![图片alt](图片地址 ''图片title'')  
 示例：
-![图片](/img/5.png "cocoa")
+![图片](/static/img/number/5.jpg "cocoa")
 
 
 ## 超链接 

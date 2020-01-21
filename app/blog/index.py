@@ -7,6 +7,7 @@ from flask import Blueprint
 
 
 index_bp = Blueprint("index",__name__ )
+class_archive = db.Archive()
   
 @index_bp.route("/")
 def home(): 
@@ -14,7 +15,7 @@ def home():
     if "http" not in image:
         image = url_for("static", filename = config.index_image)
     d = { 
-    'welcome' : db.query_filename("welcome"),
+    'welcome' : class_archive.query_filename(filename="welcome"),
     'more' : url_for('jsonapi.get_json', args = "{}{}{}".format('index',config.jsonurl_split,1)) ,
     'gov'     : config.gov, 
     'index_imageurl' : image ,

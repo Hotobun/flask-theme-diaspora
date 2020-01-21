@@ -6,6 +6,7 @@ from app.database import db
 import mistletoe
 
 archive_path = config.archive_path
+class_archive = db.Archive()
 
 def get_archives():
     # 遍历文件夹下面的所有md文件
@@ -76,7 +77,7 @@ def update_sql():
             # 先删除表 再更新数据 可能存在很多细微改动 推到重写方便
             # db.drop_table('archive')
             # flag = False
-        db.insert(item)
+        class_archive.insert(item)
         # if item['filename'] == "english":
         #     temp = item['text']
         #     for i in temp.split("\n"):

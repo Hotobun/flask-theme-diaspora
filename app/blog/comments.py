@@ -14,6 +14,7 @@ import random
 
 
 comment_bp = Blueprint("comment",__name__, url_prefix="/comment")
+class_comment = db.Comment()
 
 def get_gravatar_image(email):
     '''
@@ -21,7 +22,7 @@ def get_gravatar_image(email):
         有就保存 没有就返回 默认头像
     '''
     # 判断数据库有没有这个邮箱 有就直接用
-    emails = db.query_comment_email(email)
+    emails = class_comment.query_email(email = email)
     if len(emails) > 0:
         if emails[-1].vcardurl != 'default_img': 
             return emails[-1].vcardurl
@@ -56,7 +57,7 @@ def get_gravatar_image(email):
 def comment_post(filename):
     if request.method == "POST":
         data = request.form.to_dict()
-        low = db.query_comment(fid='invest', limit=1 )
+        low = class_comment.query(fid='invest', limit=1 )
         if len(low) > 0:
             low = low[0]
             if low.comment == data['comment']:  
@@ -76,7 +77,7 @@ def comment_post(filename):
  
         data['comment'] = comment_text
         data['ip'] = request.remote_addr 
-        db.insert_comment(data) 
+        class_comment.insert(item = data) 
     resp = make_response(redirect(url_for("article.archive",filename=data['fid'])))
     resp.set_cookie('user',data['author'], max_age=config.cookie_max_age)
     resp.set_cookie('email',data['email'], max_age=config.cookie_max_age)
@@ -85,7 +86,7 @@ def comment_post(filename):
 
 def get_sql_comments(filename):
     # rtype : list
-    data = db.query_comment(filename)
+    data = class_comment.query(fid = filename)
     # print("查询到{}条数据".format(len(data)))
     root0 = []
     children = []

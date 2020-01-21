@@ -12,6 +12,8 @@ Session = sessionmaker(bind=engine)
 session = Session()
 # 所有的类都要继承自`declarative_base`这个函数生成的基类
 Base = declarative_base(engine)
+
+
 class Archive(Base):
     # 定义表名
     __tablename__ = 'archive'
@@ -42,63 +44,64 @@ class Archive(Base):
     def __repr__(self):
         return '<Archive( title="{} ")>'.format( self.title)
 
-def update_archives(filenames):
-    archives = session.query(Archive).all()
-    for i in archives:
-        if i.filename not in filenames:
-            i.isdel = True 
-        
-def insert(item):
-    # item type : dict
-    # 插入数据 
-    if type(item) == dict:       
-        temp = session.query(Archive).filter( item.get("filename") == Archive.filename ).all()
-        if temp and type(temp[0]) == Archive: 
-            new = temp[0] 
+
+    def update_archives(self, filenames):
+        archives = session.query(Archive).all()
+        for i in archives:
+            if i.filename not in filenames:
+                i.isdel = True 
+
+    def insert(self, item):
+        # item type : dict
+        # 插入数据 
+        if type(item) == dict:       
+            temp = session.query(Archive).filter( item.get("filename") == Archive.filename ).all()
+            if temp and type(temp[0]) == Archive: 
+                new = temp[0] 
+            else:
+                new = Archive()
+
+            new.filename = item.get("filename")
+            new.href = "/{}/{}".format(config.article_prefix, item.get("filename"))
+            new.imgurl = item.get('cover').strip("/") if len(item.get("cover")) > 5 else config.define_coverimg
+            new.date = item.get('date', '2009-10-16 15:35:38') 
+            new.title = item["title"]
+            new.abstract = item["abstract"][:80]
+            new.tags = item["tags"] 
+            new.text = item['text']
+            new.isdel = False
+
+            session.add(new)  
+            session.commit()        
+
+    def query_archive(self, tag, index):
+        # tag type : str
+        # index type : int
+        '''
+        tag选择查询的标签
+        index 控制查询几条语句 该值设置在 config.py 文件中 index_archive_count
+        offset 控制偏移量 
+        例：
+            mysql> select * from archive
+                    where tags likek "%tag%"
+                    limit offset index
+                    ;
+        '''
+        if tag == 'index':
+            tag = ''
+        target = session.query(Archive).filter( Archive.isdel == False, Archive.tags.like("%{}%".format(tag))).limit(config.index_archive_count+1).offset( index ).all()
+        return target 
+
+    def query_filename(self, filename):
+        target = session.query(Archive).filter(Archive.filename == filename).all()
+        if len(target) > 0 and type(target[0]) == Archive:
+            return target[0]
         else:
-            new = Archive()
+            return False
 
-        new.filename = item.get("filename")
-        new.href = "/{}/{}".format(config.article_prefix, item.get("filename"))
-        new.imgurl = item.get('cover').strip("/") if len(item.get("cover")) > 5 else config.define_coverimg
-        new.date = item.get('date', '2009-10-16 15:35:38') 
-        new.title = item["title"]
-        new.abstract = item["abstract"][:80]
-        new.tags = item["tags"] 
-        new.text = item['text']
-        new.isdel = False
-
-        session.add(new)  
-        session.commit()        
-
-def query_archive(tag, index):
-    # tag type : str
-    # index type : int
-    '''
-    tag选择查询的标签
-    index 控制查询几条语句 该值设置在 config.py 文件中 index_archive_count
-    offset 控制偏移量 
-    例：
-        mysql> select * from archive
-                where tags likek "%tag%"
-                limit offset index
-                ;
-    '''
-    if tag == 'index':
-        tag = ''
-    target = session.query(Archive).filter( Archive.isdel == False, Archive.tags.like("%{}%".format(tag))).limit(config.index_archive_count+1).offset( index ).all()
-    return target 
-
-def query_filename(filename):
-    target = session.query(Archive).filter(Archive.filename == filename).all()
-    if len(target) > 0 and type(target[0]) == Archive:
-        return target[0]
-    else:
-        return False
-
-def drop_archive():
-    Archive.__table__.drop(engine)
-    print("drop ",Archive.__tablename__)
+    def drop(self,):
+        Archive.__table__.drop(engine)
+        print("drop ",Archive.__tablename__)
 
 class Tags(Base):
     # 定义表名
@@ -126,8 +129,6 @@ class Tags(Base):
     def drop_tag(self):
         self.drop()
         
-
-
 class Comment(Base):
     # 定义表名
     __tablename__ = 'comment'
@@ -160,39 +161,44 @@ class Comment(Base):
     def __repr__(self):
         return '<Comment( {}:{} )>'.format( self.author, self.comment[:20])
 
-def insert_comment(item):
-    if type(item) == dict:       
-        new = Comment()
-        if item.get('id', False):
-            new.id = item['id']
-        new.root = item['root']
-        new.fid = item['fid']
-        if item.get('date', False):
-            new.date = item['date']
-        if not item['author']:
-            new.author = config.default_user_name
+    def insert(self, item):
+        # item tyep: dict
+        if type(item) == dict:       
+            new = Comment()
+            if item.get('id', False):
+                new.id = item['id']
+            new.root = item['root']
+            new.fid = item['fid']
+            if item.get('date', False):
+                new.date = item['date']
+            if not item['author']:
+                new.author = config.default_user_name
+            else:
+                new.author = item['author']
+            new.vcardurl = item.get('vcardurl', 'default_img')
+            new.comment = item['comment']
+            new.site = item['site']
+            new.email = item['email']
+            new.ip = item.get("ip", '')
+            new.isdel = False
+
+            session.add(new)
+            session.commit()
+            print("插入成功 ")
+
+    def query(self, fid, limit = 0):
+        if limit:
+            target = session.query(Comment).filter( Comment.isdel == False, Comment.fid == fid ).limit(limit).all()
         else:
-            new.author = item['author']
-        new.vcardurl = item.get('vcardurl', 'default_img')
-        new.comment = item['comment']
-        new.site = item['site']
-        new.email = item['email']
-        new.ip = item.get("ip", '')
-        new.isdel = False
+            target = session.query(Comment).filter( Comment.isdel == False, Comment.fid == fid ).all()
+        return target
 
-        session.add(new)
-        session.commit()
-        print("插入成功 ")
-
-def query_comment(fid, limit = 0):
-    if limit:
-        target = session.query(Comment).filter( Comment.isdel == False, Comment.fid == fid ).limit(limit).all()
-    else:
-        target = session.query(Comment).filter( Comment.isdel == False, Comment.fid == fid ).all()
-    return target
-
-def query_comment_email(email):
-    return session.query(Comment).filter( Comment.email == email ).all()
+    def query_email(self, email):
+        return session.query(Comment).filter( Comment.email == email ).all()
+    
+    def drop(self):
+        Comment.__table__.drop(engine)
+        print("drop ", Comment.__tablename__)
 
 def Create_table():
     # 创建数据表
@@ -207,4 +213,4 @@ if __name__ == "__main__":
     # update()
     Create_table()
  
-    pass 
+ 

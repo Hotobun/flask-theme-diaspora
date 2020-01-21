@@ -6,6 +6,7 @@ from flask import render_template, url_for, Response
 from flask import Blueprint
 
 json_bp = Blueprint("jsonapi",__name__, url_prefix="/json")  
+class_archive = db.Archive()
 
 @json_bp.route("/<args>")
 def get_json(args):
@@ -13,7 +14,7 @@ def get_json(args):
         tag, index = args.split(config.jsonurl_split)
     else:
         return {}
-    sql_data = db.query_archive(tag, index)
+    sql_data = class_archive.query_archive(tag=tag, index=index)
     temp = []
     number = int(index) - 1
 
