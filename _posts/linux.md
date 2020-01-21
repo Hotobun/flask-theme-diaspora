@@ -6,27 +6,37 @@ categories: 基础
 cover: /img/linux.jpg
 ---
 ## 常用命令
-注意权限 适当添加`sudo`或切换至`root`
-修改密码
-`paasswd user # 当前用户可省略user`
-新建用户和用户组
-`groupadd name # 新建用户组`
-`adduser -g group name  # 新建用户并指定用户组`
-赠与某用户 sudo权限 `vim /etc/sudoers`
+注意权限 适当添加`sudo`或切换至`root`   
+修改密码   
+`paasswd user # 当前用户可省略user`  
+新建用户和用户组  
+`groupadd name # 新建用户组`  
+`adduser -g group name  # 新建用户并指定用户组`  
+赠与某用户 sudo权限 `vim /etc/sudoers`  
+
 ```
 root  ALL=(ALL) ALL     # 找到这一行 添加用户在下面写
 chino ALL=(ALL) ALL     # chino用户允许使用sudo
 syaro ALL=(ALL) NOPASSWD:ALL     # syaro用户使用sudo不需要密码
 %cooca ALL=(ALL) ALL    # cocoa用户组成员可以使用sudo
 ```
-修改hostname
-`$ hostmanectl set-hostname name`
-不小心按了ctrl + s
-`$ :noh`
- 根据端口号获取PID
- `$ netstat -nlp | grep :{port}| awk '{print $7}' | awk -F"/" '{ print $1 }`
- ```
- uname -a # 查看内核/操作系统/CPU信息的linux系统信息  
+
+修改hostname  
+```
+$ hostmanectl set-hostname name
+```  
+不小心按了ctrl + s  
+```
+$ :noh
+```  
+根据端口号获取PID  
+```
+$ netstat -nlp | grep :{port}| awk '{print $7}' | awk -F"/" '{ print $1 }
+```
+
+
+```
+uname -a # 查看内核/操作系统/CPU信息的linux系统信息  
 head -n l /etc/issue # 查看操作系统版本  
 cat /proc/cpuinfo # 查看CPU信息  
 hostname # 查看计算机名的linux系统信息命令  
@@ -74,43 +84,43 @@ cat /proc/swaps ：查看所有swap分区的信息
  ```
  
 ## sudo找不到命令
-普通用户sudo的时候 找不到命令  
-centos用户程序目录一般在/usr/local/bin/  
-root用户的目录在/usr/bin  
-sudo 不检查/usr/local/bin  
-解决：  
+普通用户sudo的时候 找不到命令    
+centos用户程序目录一般在/usr/local/bin/    
+root用户的目录在/usr/bin    
+sudo 不检查/usr/local/bin    
+解决：   
 ```
 which command  # 找出用户的命令路径  假设为 pwd  
 sudo ln -s pwd /usr/bin/command     # 修改pwd 和command  
 ```
 
 ***
-## centos安装python3
-方向键乱码：  
-`yum install readline-devel`
-找不到ssl模块  
-`yum install openssl-devel`
+## centos安装python3  
+方向键乱码：     
+`yum install readline-devel`  
+找不到ssl模块    
+`yum install openssl-devel`  
 ```
-yilai bao  error:
+yilai bao  error:  
     ModuleNotFoundError: No module named '_ctypes':
     yum install libffi-devel -y
 ```
 官网下载包后 
 ```
-./configure  # 检测环境
+./configure  # 检测环境  
 make 
 make install 
 ```
-安装完成
+安装完成  
 
 ***
-## ssh scp
-ssh scp出现 Permission denied (publickey,gssapi-with-mic,gssapi-keyex)  
-修改目标服务器中 /etc/ssh/sshd_config 中的参数：  
-一般在文件最后面  
-将PasswordAuthentication no中的“no”改为yes，如果有注释，将注释去掉  
-之后service sshd restart重启sshd服务就可以了。  
-
+## ssh scp  
+ssh scp出现 Permission denied (publickey,gssapi-with-mic,gssapi-keyex)    
+修改目标服务器中 /etc/ssh/sshd_config 中的参数：    
+一般在文件最后面    
+将PasswordAuthentication no中的“no”改为yes，如果有注释，将注释去掉    
+之后service sshd restart重启sshd服务就可以了。    
+  
 ***
 ## tcp转发   
 云主机网口是私网ip  
@@ -131,7 +141,7 @@ $ sudo nginx -s reload # 重启服务生效
 ```
 
 ## 静态网站的部署:
-在http{} 内部添加一个server 
+在http{} 内部添加一个server   
 `vim /etc/nginx/nginx.conf`
 ```
     server {
