@@ -485,7 +485,52 @@ if __name__ == "__main__":
   <summary> c语言代码 </summary>
 
 ``` c 
+# include <stdio.h>
+# define SIZE  9
+ 
+void merge(int * arr,int * temp, int L, int M, int R){ 
+    int i, j, k ;
+    i = L, j = M+1, k = L;
+    while (i!=M+1 && j!=R+1){
+        if (arr[i] > arr[j]){
+            temp[k++] = arr[j++];
+        }
+        else{
+            temp[k++] = arr[i++];
+        }
+    }
+    while (i != M+1){
+        temp[k++] = arr[i++];
+    }
+    while (j != R+1){
+        temp[k++] = arr[j++];
+    }
+    for ( i=L; i<=R; i++){
+        arr[i] = temp[i]; 
+    } 
+}
+ 
+void mergeSort(int * arr,int * temp, int L, int R){
+    if (L >= R){
+        return ;
+    }
+    else{
+        int M = (L + R) /2;
+        mergeSort(arr, temp, L, M);
+        mergeSort(arr, temp, M+1, R);
+        merge(arr, temp, L, M, R);
+    }
+}
+ 
+int main(void){
+    int arr[SIZE] = {5,33,21,51,44,12,88,30,67};
+    int temp[SIZE];
 
+    mergeSort(arr, temp, 0, SIZE-1);
+    for (int i=0; i<SIZE; i++){
+        printf("%d ", arr[i]);
+    }
+}
 ```
 
 </details>  
