@@ -19,6 +19,53 @@ cover: /img/sort.jpg
 | 快速排序 | O(nlog2n)      | O(n²)          | O(nlog2n)      | O(nlog2n)  | 不稳定 |
 
 
+***
+<details>
+  <summary> plt_show.py </summary>
+
+``` python
+from matplotlib import animation
+from matplotlib import pyplot as plt 
+import random
+from pandas import DataFrame
+from config import dcolor, test_data, interval
+
+def show(sort_Iterable, title='', fig=None, filename=None, show=True):
+    # data type: Iterable Dataframe({"number":array, "color":array})
+    # rtype : None
+
+    data = [] 
+    if type(sort_Iterable) == list:
+        data = sort_Iterable
+    else:
+        for item in sort_Iterable(test_data):
+            data.append(item)
+
+    if not fig:
+        fig = plt.figure()   
+ 
+    def animate(i): 
+        plt.clf()
+        plt.xticks([])
+        plt.yticks([])
+        plt.title(title) 
+        rects = plt.bar(data[i].index, height = data[i]['number'] ,  color = data[i]['color'])
+        return rects
+
+    anim = animation.FuncAnimation(fig, animate, frames=len(data), interval=interval, repeat=False)
+    if filename:
+        anim.save(filename=filename)
+    if show:
+        plt.show()
+
+if __name__ == "__main__": 
+    array = list(range(1,33))
+    random.shuffle(array)   
+```
+
+</details>  
+  
+  
 *** 
 
 #### 冒泡排序  
@@ -295,4 +342,212 @@ if __name__ == "__main__":
   
 <img style="display: block; margin-left: auto; margin-right: auto;" src="/static/img/archive_img/sort_selection_sort.gif" alt=""> 
 
+
 ***
+#### 快速排序
+>快速排序（Quicksort）是对冒泡排序的一种改进。<br>
+快速排序由C. A. R. Hoare在1960年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。
+
+顾名思义 比较快  
+
+<details>
+  <summary> c语言代码 </summary>
+
+``` c
+# include <stdio.h>
+# define SIZE 9 
+ 
+void sort(int* array, int l, int r){
+    if (l >= r){
+        return;
+    }
+    int i, j, target;
+    i = l;
+    j = r; 
+    target = array[l];  
+    while (i < j){
+        while (i<j && array[j] > target ){ 
+            // 循环退出后 j是未排序范围 最右边的比target小的数的下标
+            // 把这个值放到左边
+            j--;
+        }
+        array[i] = array[j];
+        while (i<j && array[i] <= target ){
+            // 循环退出后 i是未排序范围 最左边的比target大的数的下标
+            // 把这个值放到右边
+            i++;
+        } 
+        array[j] = array[i];
+    }
+    // 走出上面循环后 下标i与j是相等的 这个位置就是target在排序后合适的位置
+    // 比target小的数已经全部在左边 大的数在右边
+    array[i] = target; 
+
+    // 剩下的两组数据递归下去 同样的方法 直到找出所有合适位置
+    sort(array,l,i-1);
+    sort(array,i+1,r);
+}
+   
+void show(char * text, int * array){
+    int i = 0;
+    printf("%s", text);
+    while (i<SIZE){
+        printf("%d ",array[i]);
+        i++;
+    }
+    printf("\n");
+}
+ 
+int main(void){
+    int array[SIZE] = {2,54,6,1,55,7,23,31,8};
+    show("original : ", array);
+    sort(array, 0,SIZE-1);
+    show("new sort : ", array);
+    return 0;
+}
+```
+
+</details>  
+  
+  
+<details>
+  <summary> python绘图代码 </summary>
+
+``` python
+from config import dcolor, desc
+from plt_show import show  
+from config import test_data, array, dcolor
+from pandas import DataFrame
+ 
+def quick_sort(ordata, l = 0, r = None): 
+    # rtype : yield DataFrame
+    data = ordata 
+    if not r:
+        r = len(data) -1
+         
+    if l>=r:
+        colors[r] = dcolor['done']
+        queue.append(DataFrame({"number":temp_list+data, 'color':temp_color+colors}))
+        return
+ 
+    i, j = l, r
+    target = data[l] 
+    temp_list[1] = target
+    while i < j: 
+        colors[j] = dcolor['target'] 
+        queue.append(DataFrame({"number":temp_list+data, 'color':temp_color+colors}))
+        while i<j and data[j] > target: 
+            colors[j] = dcolor['default'] 
+            j -= 1 
+            colors[j] = dcolor['target']
+            queue.append(DataFrame({"number":temp_list+data, 'color':temp_color+colors}))
+        data[i] = data[j] 
+        colors[i] = dcolor['target']
+        queue.append(DataFrame({"number":temp_list+data, 'color':temp_color+colors})) 
+        while i<j and data[i] <= target: 
+            colors[i] = dcolor['default']
+            i += 1 
+            colors[i] = dcolor['target']
+            queue.append(DataFrame({"number":temp_list+data, 'color':temp_color+colors}))
+        data[j] = data[i]  
+        queue.append(DataFrame({"number":temp_list+data, 'color':temp_color+colors})) 
+    data[i] = target  
+    colors[i] = dcolor['done'] 
+    temp_list[1] = 0
+    queue.append(DataFrame({"number":temp_list+data, 'color':temp_color+colors}))
+    quick_sort(data  , l, i-1)
+    quick_sort(data  , i+1, r)    
+ 
+def main(): 
+    data = array 
+    quick_sort(data) 
+    show(queue, title='quick_sort', filename='gif/quick_sort.gif')
+     
+if __name__ == "__main__":   
+    temp_list = [0] * 3
+    temp_color = [dcolor['now']] * 3 
+    colors = [dcolor['default'],]* len(array)  
+    queue = []
+    main() 
+```
+
+</details>  
+  
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="/static/img/archive_img/sort_quick_sort.gif" alt=""> 
+
+
+***
+#### 归并排序
+>归并排序（MERGE-SORT）是建立在归并操作上的一种有效的排序算法,该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。若将两个有序表合并成一个有序表，称为二路归并。归并排序是一种稳定的排序方法。
+
+<details>
+  <summary> c语言代码 </summary>
+
+``` c 
+
+```
+
+</details>  
+  
+  
+<details>
+  <summary> python绘图代码 </summary>
+
+``` python 
+from config import dcolor, desc, test_data, array, dcolor
+from plt_show import show   
+from pandas import DataFrame
+ 
+def merge(arr, temp, L, M, R): 
+    i, j, k = L, M+1, L 
+    for index in range(L,R+1):
+        colors[index] = dcolor['target']
+    queue.append(DataFrame({"number":[]+arr, 'color':colors}))
+    while i!=M+1 and j!=R+1: 
+        if arr[i] > arr[j]:
+            temp[k] = arr[j]
+            j += 1
+        else:
+            temp[k] = arr[i]
+            i += 1
+        k += 1
+    while i != M+1:
+        temp[k] = arr[i]
+        i += 1
+        k += 1
+    while j != R+1:
+        temp[k] = arr[j]
+        j += 1
+        k += 1
+    i = L
+    while i<=R:
+        arr[i] = temp[i]
+        colors[i] = dcolor['done']
+        i += 1
+        queue.append(DataFrame({"number":[]+arr, 'color':colors}))
+ 
+def mergeSort(arr, temp, L, R):
+    if L >= R:
+        return
+    else: 
+        M = (L + R) // 2
+        mergeSort(arr, temp, L, M) 
+        mergeSort(arr, temp, M+1, R) 
+        merge(arr, temp, L, M, R) 
+        queue.append(DataFrame({"number":[]+arr, 'color':colors}))
+ 
+if __name__ == "__main__": 
+    queue = []
+    colors = [dcolor['default']]* len(array) 
+    temp = [None] * len(array)
+    mergeSort(array, temp, 0, len(array)-1)
+    print(array) 
+    show(queue, title='merge_sort', filename='gif/merge_sort.gif')
+```
+
+</details>  
+  
+
+<img style="display: block; margin-left: auto; margin-right: auto;" src="/static/img/archive_img/sort_merge_sort.gif" alt=""> 
+
