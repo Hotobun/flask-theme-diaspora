@@ -805,7 +805,7 @@ $(window).scroll(function () {
         }
     } else {
         // console.log("get_json_tur", get_json_tur);
-    }
+    } 
 });    
 
 // 获取滚动条坐标

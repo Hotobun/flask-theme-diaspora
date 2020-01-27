@@ -57,7 +57,7 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
 
 
 {% block main %}  
-<div class='main'>
+<div class='main' id='div_article_main' name='hello'>
     <h1 class="title">{{title}}</h1>
     <div class="stuff">
         <span>{{date}}</span>
@@ -207,7 +207,6 @@ href="{{ url_for('static', filename='img/site/logo_min.png') }}">
 <script src="{{ url_for('static', filename = 'photoswipe/photoswipe-ui-default.min.js' ) }}"></script>  
 <script>
     hljs.initHighlightingOnLoad();
-    console.log("文章初始化代码高亮");
 </script>
 
 {% endblock  %} 
