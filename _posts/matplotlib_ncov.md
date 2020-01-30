@@ -15,7 +15,6 @@ cover: /img/ncov.jpg
 <img style="display: block; margin-left: auto; margin-right: auto;" src="/static/img/archive_img/ncov_heal.gif" alt=""> 
   
  
- 
 ``` python
 from matplotlib import pyplot as plt 
 from matplotlib import animation
